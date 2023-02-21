@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Trading Series: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask | Hisyam Imran</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Overview In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib.
+What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction. There are dozens of ways to analyze this. One of them is by using the Japanese Candlestick Patterns.">
+    <meta name="generator" content="Hugo 0.110.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="../../portfolio_hisyam/ananke/css/main.min.css" >
+
+
+
+  
+    <link rel="stylesheet" href="../../portfolio_hisyam/css/custom.css">
+  
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Trading Series: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask" />
+<meta property="og:description" content="Overview In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib.
+What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction. There are dozens of ways to analyze this. One of them is by using the Japanese Candlestick Patterns." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hisyamimran96.github.io/portfolio_hisyam/post/project-3/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-05T11:13:32-04:00" />
+<meta property="article:modified_time" content="2023-02-05T11:13:32-04:00" /><meta property="og:site_name" content="Hisyam Imran" />
+<meta itemprop="name" content="Trading Series: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask">
+<meta itemprop="description" content="Overview In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib.
+What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction. There are dozens of ways to analyze this. One of them is by using the Japanese Candlestick Patterns."><meta itemprop="datePublished" content="2023-02-05T11:13:32-04:00" />
+<meta itemprop="dateModified" content="2023-02-05T11:13:32-04:00" />
+<meta itemprop="wordCount" content="2913">
+<meta itemprop="keywords" content="python,docker,trading,stocks,database," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Trading Series: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask"/>
+<meta name="twitter:description" content="Overview In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib.
+What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction. There are dozens of ways to analyze this. One of them is by using the Japanese Candlestick Patterns."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  <header class="cover bg-top" style="background-image: url('https://hisyamimran96.github.io/portfolio_hisyam/images/project-snapshot.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="../../portfolio_hisyam/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Hisyam Imran
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/about/" title="About me page">
+              About me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/experience/" title="Experience page">
+              Experience
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/post/" title="Projects page">
+              Projects
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/courses_cert/" title="Certifications page">
+              Certifications
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+    
+    <a href="https://github.com/hisyamimran96" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.linkedin.com/in/hisyam-imran-hashim/" target="_blank" rel="noopener" class="linkedin ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" aria-label="follow on LinkedIn——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Trading Series: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        PROJECTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+      
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://hisyamimran96.github.io/portfolio_hisyam/post/project-3/&amp;title=Trading%20Series:%20S&amp;P500%20Candlestick%20Pattern%20Screener%20WebApp%20using%20TA-lib,%20Yahoo%20Finance%20API%20and%20Flask" class="ananke-social-link linkedin no-underline" aria-label="share on LinkedIn">
+        
+        <span class="icon"> <svg style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+        
+      </a>
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Trading Series: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2023-02-05T11:13:32-04:00">February 5, 2023</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="overview">Overview</h1>
+<p>In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib.</p>
+<h4 id="what-is-candlestick-pattern">What is candlestick pattern?</h4>
+<p>In the world of financial market, <a href="https://www.investopedia.com/terms/t/technicalanalysis.asp">Technical Analysis</a> (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction. There are dozens of ways to analyze this. One of them is by using the Japanese Candlestick Patterns. Candlestick charts are thought to have been developed in the 18th century by Munehisa Homma, a Japanese rice trader. They were introduced to the Western world by Steve Nison in his book Japanese Candlestick Charting Techniques, first published in 1991.</p>
+<p><img src="../../images/candlestick.jpg" alt="img"></p>
+<p>The price data is represented by a &ldquo;candlestick&rdquo; with High, Low, Open and Close of a specific timeframe, usually daily. Green candle represent bullish formation, meaning the close is higher than the open and vice versa. When the data is span accross longer periods, these candles will form certain patterns that can dictate, based on probabilities of the likeliness of the direction the price will move, either to the upside or downside. TA-lib is an open-source library in Python that archives all these patterns recognition.</p>
+<p><img src="../../images/pattern.jpg" alt="img"></p>
+<h4 id="how-will-this-program-work">How will this program work?</h4>
+<p>Note: For this project, I did not create a full database (which will be an idea to be developed further in the future), instead I only store the S&amp;P500 data into csv files. This means that if the index constituents change, it will not be reflected in this program. Also, for this project there will be no updating of the price automatically, I only focused on making the end-to-end WebApp functional (for now). In the future version, I might add additional feature to cater for data updating.</p>
+<ol>
+<li>
+<p>Data Source: For the list of companies I used this <a href="https://github.com/datasets/s-and-p-500-companies/blob/master/data/constituents.csv">dataset</a>. For stock price data, I used yfinance API to fetch latest price of each stock.</p>
+</li>
+<li>
+<p>Data Extraction: The program will iterate through each company in the stocks list and pass the stock symbol to yfinance function, in return yfinance will fetch price data. These pricedata will be populated in a csv for each company.</p>
+</li>
+<li>
+<p>Data Transformation: Use TA-lib to map the patterns to the price data. By default TA-lib will return an integer 0 if nothing matched, and 100 or -100 if a pattern matched. Then, make a conditional sequence to separate those names where a pattern was detected.</p>
+</li>
+<li>
+<p>Front-end: using Flask to build a simple WebApp.</p>
+</li>
+<li>
+<p>Data Loading: load detected stocks into a Flask App. The App will have some basic front-end UI for interactivity.</p>
+</li>
+</ol>
+<h1 id="data-extraction">Data Extraction</h1>
+<p>To access Yahoo Finance API for market data, we use the python package yfinance. Refering to the yfinance <a href="https://pypi.org/project/yfinance/">documentations</a>, we can extract a particular stock price data using this code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>data <span style="color:#f92672">=</span> yf<span style="color:#f92672">.</span>download(<span style="color:#e6db74">&#34;SPY&#34;</span>, start <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;2023-01-01&#34;</span>, end <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;2023-02-01&#34;</span>)
+</span></span></code></pre></div><p>The code is pretty much self-explanatory. Here we download price data of ticker &lsquo;SPY&rsquo; from Yahoo finance between start date to end date and stores the data into the variable <code>data</code>.  A simple print of this code will yield:</p>
+<p><img src="../../images/SPY_data_example.png" alt="img"></p>
+<p>The &lsquo;Open&rsquo; is the start price of a trading day, the &lsquo;Close&rsquo; is the closing price. &lsquo;High&rsquo; is the highest point in which the price went up during that day and &lsquo;Low&rsquo; is the lowest price ofthe day. Volume is the total volume traded on the day. We can use this data to pass into TA-lib stock recognition function.</p>
+<p>From this <a href="https://github.com/datasets/s-and-p-500-companies/blob/master/data/constituents.csv">dataset</a>, we can get all the ticker symbols for S&amp;P500 stocks and feed them into yfinance. A simple program to do this can be written as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;datasets/sp500.csv&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>    companies <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()<span style="color:#f92672">.</span>splitlines()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> company <span style="color:#f92672">in</span> companies:
+</span></span><span style="display:flex;"><span>        symbol <span style="color:#f92672">=</span> company<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)[<span style="color:#ae81ff">0</span>]
+</span></span></code></pre></div><p>I used the <code>open()</code> python in-built method to read csv file. Because I removed the header beforehand, I can straight away read the first row without having a problem when processing. If you prefer to remove header in code, we can skip the first row by modifying the code by adding in next(csv.reader(f)) right after you open the file. The code will look as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;datasets/sp500.csv&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># skip header</span>
+</span></span><span style="display:flex;"><span>    next(csv<span style="color:#f92672">.</span>reader(f))
+</span></span><span style="display:flex;"><span>    companies <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()<span style="color:#f92672">.</span>splitlines()
+</span></span></code></pre></div><p>The splitlines() method splits each line and store them as elements of a list. Now I can get the symbol by splitting each line, and get its first element. The symbol will then be fed into yfinance to fetch price data. These price data can be big, depending on the timeframe in which we want to extract. I just want 3 months worth of data with interval of one day, this means I want a daily chart in a 3 month timespan, this is equivalent to 90 rows of data per stock. Since we have 500 stocks, we will have a total of 500*90 = 45,000 rows of price data, not too bad. Now imagine we want a 5 minutes bar of one year worth of data per stock. That will give us, in total, 5*12*24*365 = 525,600 rows per stock. for 500 stocks, we will have 262,800,000 rows of data!</p>
+<p>To store these data into my own &lsquo;database&rsquo; of stocks, I can write the price data into a csv file and name each file with the stock symbol. To make this process simpler, use Pandas dataframe.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> company <span style="color:#f92672">in</span> companies:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#get the first element, which is symbol</span>
+</span></span><span style="display:flex;"><span>        symbol <span style="color:#f92672">=</span> company<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>        df <span style="color:#f92672">=</span> yf<span style="color:#f92672">.</span>download(symbol, start <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;2022-12-09&#34;</span>, end <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;2023-02-09&#34;</span>)
+</span></span><span style="display:flex;"><span>        df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#39;datasets/daily/</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">.csv&#39;</span><span style="color:#f92672">.</span>format(symbol))
+</span></span></code></pre></div><p>Now I have all price data for each stocks neatly stored in csvs!</p>
+<h1 id="data-transformation">Data Transformation</h1>
+<p>Here, my ultimate goal is not the price of stocks, but whether the stocks have certain patterns forming in their price action. Therefore, I need to do some tranformation.</p>
+<h4 id="what-is-ta-lib">What is TA-lib?</h4>
+<p>As discussed in the introduction, Technical Analysis is used by traders and investors to derive insights of the market&rsquo;s price movement. TA-lib is an open source library that is used in analyzing the stock market&rsquo;s historical data like share price, volume, etc. TA-lib developers did a good job formulating technical indicators like RSI, MACD etc. together in this package. For this project, I used the pattern database built-into the TA-lib package, these are TA-lib&rsquo;s functions that have the &lsquo;CDL&rsquo; prefix. For all function list, visit <a href="https://ta-lib.org/function.html">TA-lib documentation</a>.</p>
+<pre tabindex="0"><code>Example of candlestick pattern functions in TA-Lib:
+
+Function Name       | Pattern
+------------------  | ------------------------
+CDL3BLACKCROWS      | Three Black Crows
+CDL3INSIDE          | Three Inside Up/Down
+CDL3LINESTRIKE      | Three-Line Strike 
+CDL3OUTSIDE         | Three Outside Up/Down
+CDL3STARSINSOUTH    | Three Stars In The South
+CDL3WHITESOLDIERS   | Three Advancing White Soldiers
+CDLABANDONEDBABY    | Abandoned Baby
+CDLADVANCEBLOCK     | Advance Block
+CDLBELTHOLD         | Belt-hold
+CDLBREAKAWAY        | Breakaway
+CDLCLOSINGMARUBOZU  | Closing Marubozu
+CDLCONCEALBABYSWALL | Concealing Baby Swallow
+CDLCOUNTERATTACK    | Counterattack
+CDLDARKCLOUDCOVER   | Dark Cloud Cover
+CDLDOJI             | Doji
+CDLDOJISTAR         | Doji Star
+CDLDRAGONFLYDOJI    | Dragonfly Doji
+CDLENGULFING        | Engulfing Pattern
+CDLEVENINGDOJISTAR  | Evening Doji Star
+</code></pre><p>Since I want to be able to use these &lsquo;database&rsquo; of function name, it is good if I can store this in a separate python file so I can call it later. So, I created a python file named patterns.py and create a dictionary named &lsquo;candlestick_patterns&rsquo;. I will use this variable later when building my WebApp.</p>
+<h4 id="how-to-use-these-functions">How to use these functions?</h4>
+<p>we need to input Open, High, Low and Close data which should be an array-like data structure. The function will return integer 100, -100 or 0 indicating whether there is a pattern found. For example if I want to scan for Engulfing Pattern, I use the CDLENGULFING and pass in Open, High, Low, and Close dataframe.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>engulfing <span style="color:#f92672">=</span> talib<span style="color:#f92672">.</span>CDLENGULFING(data[<span style="color:#e6db74">&#39;Open&#39;</span>], data[<span style="color:#e6db74">&#39;High&#39;</span>], data[<span style="color:#e6db74">&#39;Low&#39;</span>], data[<span style="color:#e6db74">&#39;Close&#39;</span>])
+</span></span></code></pre></div><p>A quick print of this will give me:</p>
+<p><img src="../../images/ta-lib-example.png" alt="img"></p>
+<p>I can use this to screen through all my stock names, fetch price data, and pass the price data into TA-lib. Since I&rsquo;m only interested in the most recent data, I need to further filter where I will extract these results, to do this I can simply just select the last data point and pass in a conditional statement to categorise whether a pattern was found, if so whether it is bearish or bullish? Or none was found.</p>
+<h4 id="filtering-all-stocks">Filtering all stocks</h4>
+<p>Recall that I stored all the stocks price data in a csv for each stock symbol, now we can access these data by reading the csv.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>stocks <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;datasets/sp500.csv&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> csv<span style="color:#f92672">.</span>reader(f):
+</span></span><span style="display:flex;"><span>        stocks[row[<span style="color:#ae81ff">0</span>]] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;company&#39;</span>: row[<span style="color:#ae81ff">1</span>]}
+</span></span></code></pre></div><p>This code will store all the symbol of stocks and company names into a dictionary. This way, it is easier for me to re-use the names later when I want to make a WebApp. Since I want a screener, for any given pattern, I want to apply the pattern function to all the price data of all stocks, and retrieve ones with pattern found. To do this, I have to iterate through each csv file and apply TA-lib function onto them.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>filename <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>listdir(<span style="color:#e6db74">&#39;datasets/daily&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file <span style="color:#f92672">in</span> filename:
+</span></span><span style="display:flex;"><span>    df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;datasets/daily/</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(file))
+</span></span><span style="display:flex;"><span>    symbol <span style="color:#f92672">=</span> file<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;.&#39;</span>)[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> talib<span style="color:#f92672">.</span>CDLENGULFING(df[<span style="color:#e6db74">&#39;Open&#39;</span>], df[<span style="color:#e6db74">&#39;High&#39;</span>], df[<span style="color:#e6db74">&#39;Low&#39;</span>], df[<span style="color:#e6db74">&#39;Close&#39;</span>])
+</span></span><span style="display:flex;"><span>    last <span style="color:#f92672">=</span> result<span style="color:#f92672">.</span>tail(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>values[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> last <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        stocks[symbol][pattern] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Bullish </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(candlestick_patterns[pattern])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> last <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        stocks[symbol][pattern] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Bearish </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(candlestick_patterns[pattern])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        stocks[symbol][pattern] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span></code></pre></div><p>I use the os listdir function to list all my CSVs stored and loop through each file in the folder. For each file, I create a dataframe, get the symbol, and pass this dataframe to a TA-lib function, in this case I want to search for enguilfing pattern. Now, I can get the latest result by defining latest price which is the &rsquo;last&rsquo; variable. A quick print statement inside the conditionals will give the followuing result indicating a pattern was found.</p>
+<p><img src="../../images/example_.png" alt="img"></p>
+<p>Now the program is working. This will be the basis for the backend of my app. Now I can modify these codes to be more customizable and interactive so I can get any pattern that I want. And from here, I can integrate a front-end to make it more user-friendly.</p>
+<h1 id="building-flask-webapp">Building Flask WebApp</h1>
+<p>I use Flask as my front-end. For more information on Flask, visit the docs <a href="https://flask.palletsprojects.com/en/2.2.x/">here</a>. From the docs, to build a simple flask website, we just have to instantiate a Flask object. The syntax is like below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Flask(__name__)
+</span></span></code></pre></div><p>this will create an instance of Flask. Now I can specify the route for each flask function that I created. For example, I want a mainpage, I will need to add a static method to specify the route of the page.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#34;/&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">mainpage</span>():
+</span></span></code></pre></div><p>This function basically tells us that if I go to the host website and go to &lsquo;/&rsquo; route, I will land on the method &lsquo;mainpage&rsquo;. And all the things that we defined inside the mainpage() will run, obviously in this example I will get an empty page as there&rsquo;s nothing specified in the mainpage() method.</p>
+<h4 id="the-front---end-design">The Front - End design</h4>
+<p>We can create our website template using html or css and pass in the file into our Flask methods. This is important as we need an interactive front-end that functions as expected with our back-end. The function &lsquo;return_template&rsquo; will return our html/css template to Flask and it will automatically render the webpage. A simple code will look like this.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#34;/&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">mainpage</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> render_template(<span style="color:#e6db74">&#39;index.html&#39;</span>)
+</span></span></code></pre></div><p>where index.html is referenced.</p>
+<p>I will not go into so much detail on this part as it will be another whole long story. To see the html file, visit my <a href="">github</a>. This code basically takes in functions defined in our backend and referenced it to our template. For example, I can create a dropdown of all the patterns by referencing the &lsquo;patterns&rsquo; variable that I created in the main code. This patterns</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span> &lt;<span style="color:#f92672">body</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;background-color: rgba(94, 68, 47, 0.651);&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h1</span>&gt; S<span style="color:#960050;background-color:#1e0010">&amp;</span>P 500 Candlestick Pattern Screener &lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- This is the dropdown bar inside form tag--&gt;</span> 
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">&lt;!-- selection dropdown --&gt;</span>  
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">select</span> <span style="color:#a6e22e">name </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pattern&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">&lt;!-- looping into pattern variable, which is passed from app.py --&gt;</span> 
+</span></span><span style="display:flex;"><span>            {% for pattern in patterns%} 
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">option</span> <span style="color:#a6e22e">value </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;{{pattern}}&#34;</span> <span style="color:#960050;background-color:#1e0010">{%</span> <span style="color:#a6e22e">if</span> <span style="color:#a6e22e">pattern </span><span style="color:#f92672">=</span><span style="color:#e6db74">=</span> <span style="color:#a6e22e">pattern_</span> <span style="color:#960050;background-color:#1e0010">%}</span> <span style="color:#a6e22e">selected </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;selected&#34;</span> <span style="color:#960050;background-color:#1e0010">{%</span><span style="color:#a6e22e">endif</span><span style="color:#960050;background-color:#1e0010">%}</span>&gt; {{ patterns[pattern] }} &lt;/<span style="color:#f92672">option</span>&gt;
+</span></span><span style="display:flex;"><span>            {% endfor%}
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">&lt;!-- input style set to submit and UI as &#39;Go&#39;. This will let the user click onto the Go button a
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">            nd the web path will point towards pattern = option --&gt;</span> 
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Go&#34;</span>&gt; &lt;/<span style="color:#f92672">input</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">select</span>&gt; 
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span></code></pre></div><p>Here, I basically created a simple dropdown form submission where it takes user&rsquo;s input and store it in a variable named &ldquo;pattern&rdquo;, this variable can be returned to my back-end to fetch the output. Here&rsquo;s a screenshot of how this code renders:</p>
+<p><img src="../../images/front-end.png" alt="img"></p>
+<p>In this case, when a user select from a list of patterns and click &lsquo;Go&rsquo;, the program will fetch the pattern name and return it to my back-end for processing. As simple as that.</p>
+<h1 id="data-loading">Data Loading</h1>
+<h4 id="back-end-processing">Back-end processing</h4>
+<p>My backend is basically what I&rsquo;ve explained so far in Data Extraction and Data Transformation, just put together in a Flask environment. Some things will be added to interface with the front-end.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#34;/&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">mainpage</span>():
+</span></span><span style="display:flex;"><span>    pattern <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>args<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;pattern&#39;</span>, <span style="color:#66d9ef">None</span>) <span style="color:#75715e">#get request information, in this case we want the name of the pattern. This will be supplied from our UI in front-end</span>
+</span></span><span style="display:flex;"><span>    stocks <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;datasets/sp500.csv&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> csv<span style="color:#f92672">.</span>reader(f):
+</span></span><span style="display:flex;"><span>            stocks[row[<span style="color:#ae81ff">0</span>]] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;company&#39;</span>: row[<span style="color:#ae81ff">1</span>]}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> pattern: <span style="color:#75715e">#if a pattern was selected.</span>
+</span></span><span style="display:flex;"><span>        filename <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>listdir(<span style="color:#e6db74">&#39;datasets/daily&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> file <span style="color:#f92672">in</span> filename:
+</span></span><span style="display:flex;"><span>            df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;datasets/daily/</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(file))
+</span></span><span style="display:flex;"><span>            patfunc <span style="color:#f92672">=</span> getattr(talib, pattern) <span style="color:#75715e">#get talib function of name &#39;pattern&#39; i.e. CDLENGULFING</span>
+</span></span><span style="display:flex;"><span>            symbol <span style="color:#f92672">=</span> file<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;.&#39;</span>)[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>                result <span style="color:#f92672">=</span> patfunc(df[<span style="color:#e6db74">&#39;Open&#39;</span>], df[<span style="color:#e6db74">&#39;High&#39;</span>], df[<span style="color:#e6db74">&#39;Low&#39;</span>], df[<span style="color:#e6db74">&#39;Close&#39;</span>])
+</span></span><span style="display:flex;"><span>                last <span style="color:#f92672">=</span> result<span style="color:#f92672">.</span>tail(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>values[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> last <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>                    stocks[symbol][pattern] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Bullish </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(candlestick_patterns[pattern])
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">elif</span> last <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>                    stocks[symbol][pattern] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Bearish </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(candlestick_patterns[pattern])
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                    stocks[symbol][pattern] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>    
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">except</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> render_template(<span style="color:#e6db74">&#39;index.html&#39;</span>, patterns <span style="color:#f92672">=</span> candlestick_patterns, stocks <span style="color:#f92672">=</span> stocks, pattern_ <span style="color:#f92672">=</span> pattern) <span style="color:#75715e">#send variable to html template</span>
+</span></span></code></pre></div><p>Some addition in this code is the use of request.args.get() method. This method basically fetch the form submission from the front-end. When a user selected a pattern, the name of the pattern will be passed here. I can use this name to supply it to talib function and get the desired pattern, this way I can call a function based on user input. This will make this program more interactive.</p>
+<p>In summary, the back-end basically do these:</p>
+<ol>
+<li>get the information of which pattern a user wants to screen.</li>
+<li>create a stock dictionary from a csv file which contains all S&amp;P 500 stocks.</li>
+<li>Get all price data for each stocks from the &lsquo;database&rsquo; that was created before.</li>
+<li>apply TA-lib function with reference to the pattern selected.</li>
+<li>Filter result to the last price datapoint, based on integer value: None if 0, bullish if 100, bearish if -100.</li>
+<li>return the result to front-end</li>
+</ol>
+<p>This code returns the template file, the patterns for my dropdown list, the stocks for my stock list fetched after filtering (this will later be returned back to our front-end), and pattern_ which is the pattern selected from user input. In essence, flask is a back-to-back interaction between a back-end process and a front-end interface. Sometimes it&rsquo;s a bit confusing as which refers to which, but it all makes sense once we get it.</p>
+<h4 id="interacting-with-back-end">Interacting with Back-End</h4>
+<p>I already have my back-end processes and a UI for input. Now, I need to fetch the result from my back-end and display the output back to my front-end. Inside the same body tag as my input UI, I added a table that will display the name of stocks, the signal (i.e. bearish or bullish), and the chart of the stock based on what pattern the user selected. For simplicity, I referenced the chart image to finviz website, all I need to do to get a specific stock chart is to just change a portion of the URL formatting that is pointing to a sotck&rsquo;s symbol. By changing the stock symbol portion of the URL, I can get any snapshot of latest chart from finviz and display them on my front-end. (refer to code below).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">table</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">th</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-align:center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            TICKER
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">th</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-align:center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            COMPANY NAME 
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">th</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-align:center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            PATTERN
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>    {% for stock in stocks %} <span style="color:#75715e">&lt;!--stock variable referenced from back-end--&gt;</span>
+</span></span><span style="display:flex;"><span>        {% if stocks[stock][pattern_] %}
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">td</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-align:center&#34;</span>&gt;{{ stock }}&lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">td</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-align:center&#34;</span>&gt;{{stocks[stock][&#39;company&#39;]}}&lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">td</span> <span style="color:#a6e22e">class </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;{{stocks[stock][pattern_]}}&#39;</span>&gt;{{stocks[stock][pattern_]}}&lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">td</span> <span style="color:#a6e22e">colspan </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;3&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">img</span> <span style="color:#a6e22e">src </span><span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://charts2.finviz.com/chart.ashx?t={{stock}}&amp;ty=c&amp;ta=0&amp;p=d&amp;s=l&#34;</span> /&gt; <span style="color:#75715e">&lt;!-- just change the name of the stock to get chart snapshot from finviz --&gt;</span>
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>        {% endif %}
+</span></span><span style="display:flex;"><span>    {% endfor %}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">table</span>&gt;
+</span></span></code></pre></div><p>Recall that in my back-end, I return &lsquo;stocks&rsquo; to the front-end. In this code, the if statement make sure that the result will only show something if &lsquo;stocks&rsquo; is non-null.</p>
+<p>And that is basically the whole program. A screenshot of the working of this program is as below.</p>
+<p><img src="../../images/project-snapshot.png" alt="img"></p>
+<h1 id="updating-stocks-price-data">Updating Stocks Price Data</h1>
+<p>I created another web route to update stocks price data. It is basically exactly as data extraction section, but I put it in as a Flask method.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#34;/updateprice&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">snapshot</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;datasets/sp500.csv&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>        companies <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()<span style="color:#f92672">.</span>splitlines()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> company <span style="color:#f92672">in</span> companies:
+</span></span><span style="display:flex;"><span>            symbol <span style="color:#f92672">=</span> company<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>            end_date <span style="color:#f92672">=</span> date<span style="color:#f92672">.</span>today()
+</span></span><span style="display:flex;"><span>            start_date <span style="color:#f92672">=</span> end_date <span style="color:#f92672">-</span> relativedelta(months <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>            df <span style="color:#f92672">=</span> yf<span style="color:#f92672">.</span>download(symbol, start <span style="color:#f92672">=</span> start_date, end <span style="color:#f92672">=</span> end_date)
+</span></span><span style="display:flex;"><span>            df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#39;datasets/daily/</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">.csv&#39;</span><span style="color:#f92672">.</span>format(symbol))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Successfully update stock prices.&#34;</span>
+</span></span></code></pre></div><p>To update price, simply navigate to /updateprice domain. Data extraction will commence again.</p>
+<h1 id="further-development">Further Development</h1>
+<p>This project can be improved by:</p>
+<ol>
+<li>Adding a proper database instead of using csvs to store the stock price. It is easier to perform CRUD operation using SQL-based database. This will make the system more efficient and faster.</li>
+<li>Adding data orchestration/scheduling so that the price update can be automatically executed instead of manual update.</li>
+<li>Adding interactive charting instead of a snapshot of the price chart.</li>
+</ol>
+<h1 id="source-code">Source Code</h1>
+<p>You can find the codes in my <a href="https://github.com/hisyamimran96/SP500-candlestick-pattern-screener-project">GitHub</a>.</p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="../../portfolio_hisyam/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
+   </li>
+  
+   <li class="list di">
+     <a href="../../portfolio_hisyam/tags/docker/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">docker</a>
+   </li>
+  
+   <li class="list di">
+     <a href="../../portfolio_hisyam/tags/trading/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">trading</a>
+   </li>
+  
+   <li class="list di">
+     <a href="../../portfolio_hisyam/tags/stocks/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">stocks</a>
+   </li>
+  
+   <li class="list di">
+     <a href="../../portfolio_hisyam/tags/database/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">database</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="../../portfolio_hisyam/post/project-2/">Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://hisyamimran96.github.io/portfolio_hisyam/" >
+    &copy;  Hisyam Imran 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    
+    <a href="https://github.com/hisyamimran96" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.linkedin.com/in/hisyam-imran-hashim/" target="_blank" rel="noopener" class="linkedin ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" aria-label="follow on LinkedIn——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

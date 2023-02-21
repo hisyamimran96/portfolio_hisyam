@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>stocks on Hisyam Imran</title>
+    <link>https://hisyamimran96.github.io/portfolio_hisyam/tags/stocks/</link>
+    <description>Recent content in stocks on Hisyam Imran</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Feb 2023 11:13:32 -0400</lastBuildDate><atom:link href="https://hisyamimran96.github.io/portfolio_hisyam/tags/stocks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Trading Series: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</title>
+      <link>https://hisyamimran96.github.io/portfolio_hisyam/post/project-3/</link>
+      <pubDate>Sun, 05 Feb 2023 11:13:32 -0400</pubDate>
+      
+      <guid>https://hisyamimran96.github.io/portfolio_hisyam/post/project-3/</guid>
+      <description>Overview In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib.
+What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction. There are dozens of ways to analyze this. One of them is by using the Japanese Candlestick Patterns.</description>
+    </item>
+    
+    <item>
+      <title>Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.</title>
+      <link>https://hisyamimran96.github.io/portfolio_hisyam/post/project-2/</link>
+      <pubDate>Tue, 11 Apr 2017 11:13:32 -0400</pubDate>
+      
+      <guid>https://hisyamimran96.github.io/portfolio_hisyam/post/project-2/</guid>
+      <description>NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that
+Overview The project can be categorised into stages:
+Database Design - design the relations between tables. In this stage I determined the fact and dimension tables of the whole database.
+Data Extraction - create connection between source and destination.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Twitter ETL Pipeline using Airflow | Hisyam Imran</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Overview In this Project, I built a data pipeline to scrape through tweets using tweepy, do basic data cleaning and load it onto AWS EC2 cloud instance. The data are stored in S3 bucket and orchestrated automatically using Apache Airflow.
+Figure 1: Overview of ETL data pipeline These are the steps required to configure our pipeline:
+Data Extraction - To make this simple, I decided to scrape only 200 latest tweets from @elonmusk.">
+    <meta name="generator" content="Hugo 0.110.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="../../portfolio_hisyam/ananke/css/main.min.css" >
+
+
+
+  
+    <link rel="stylesheet" href="../../portfolio_hisyam/css/custom.css">
+  
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Twitter ETL Pipeline using Airflow" />
+<meta property="og:description" content="Overview In this Project, I built a data pipeline to scrape through tweets using tweepy, do basic data cleaning and load it onto AWS EC2 cloud instance. The data are stored in S3 bucket and orchestrated automatically using Apache Airflow.
+Figure 1: Overview of ETL data pipeline These are the steps required to configure our pipeline:
+Data Extraction - To make this simple, I decided to scrape only 200 latest tweets from @elonmusk." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hisyamimran96.github.io/portfolio_hisyam/post/project-1/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-12-10T11:00:59-04:00" />
+<meta property="article:modified_time" content="2022-12-10T11:00:59-04:00" /><meta property="og:site_name" content="Hisyam Imran" />
+<meta itemprop="name" content="Twitter ETL Pipeline using Airflow">
+<meta itemprop="description" content="Overview In this Project, I built a data pipeline to scrape through tweets using tweepy, do basic data cleaning and load it onto AWS EC2 cloud instance. The data are stored in S3 bucket and orchestrated automatically using Apache Airflow.
+Figure 1: Overview of ETL data pipeline These are the steps required to configure our pipeline:
+Data Extraction - To make this simple, I decided to scrape only 200 latest tweets from @elonmusk."><meta itemprop="datePublished" content="2022-12-10T11:00:59-04:00" />
+<meta itemprop="dateModified" content="2022-12-10T11:00:59-04:00" />
+<meta itemprop="wordCount" content="1389">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Twitter ETL Pipeline using Airflow"/>
+<meta name="twitter:description" content="Overview In this Project, I built a data pipeline to scrape through tweets using tweepy, do basic data cleaning and load it onto AWS EC2 cloud instance. The data are stored in S3 bucket and orchestrated automatically using Apache Airflow.
+Figure 1: Overview of ETL data pipeline These are the steps required to configure our pipeline:
+Data Extraction - To make this simple, I decided to scrape only 200 latest tweets from @elonmusk."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  
+  <header class="cover bg-top" style="background-image: url('https://hisyamimran96.github.io/portfolio_hisyam/images/twitter_etl.png');">
+    <div class="bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="../../portfolio_hisyam/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Hisyam Imran
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/about/" title="About me page">
+              About me
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/experience/" title="Experience page">
+              Experience
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/post/" title="Projects page">
+              Projects
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/courses_cert/" title="Certifications page">
+              Certifications
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/contact/" title="Contact page">
+              Contact
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+<div class="ananke-socials">
+  
+    
+    <a href="https://github.com/hisyamimran96" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.linkedin.com/in/hisyam-imran-hashim/" target="_blank" rel="noopener" class="linkedin ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" aria-label="follow on LinkedIn——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Twitter ETL Pipeline using Airflow</div>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        PROJECTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+      
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://hisyamimran96.github.io/portfolio_hisyam/post/project-1/&amp;title=Twitter%20ETL%20Pipeline%20using%20Airflow" class="ananke-social-link linkedin no-underline" aria-label="share on LinkedIn">
+        
+        <span class="icon"> <svg style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+        
+      </a>
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Twitter ETL Pipeline using Airflow</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-12-10T11:00:59-04:00">December 10, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="overview">Overview</h1>
+<p>In this Project, I built a data pipeline to scrape through tweets using tweepy, do basic data cleaning and load it onto AWS EC2 cloud instance. The data are stored in S3 bucket and orchestrated automatically using Apache Airflow.</p>
+<p><figure><img src="../../images/twitter_etl.png"/>
+</figure>
+
+<p style ="text-align:center;">
+Figure 1: Overview of ETL data pipeline
+</p></p>
+<p>These are the steps required to configure our pipeline:</p>
+<ol>
+<li><strong>Data Extraction</strong> - To make this simple, I decided to scrape only 200 latest tweets from @elonmusk. We can always change this step to make more complex filtering to get whatever data that we desire.</li>
+<li><strong>Data Transformation</strong> - Changing the format of data from JSON to dictionary and populate them into csv file.</li>
+<li><strong>Data Orchestration</strong> - Use AWS EC2 for cloud server. For orchestration, I use Apache Airflow to schedule tasks, so that I can update data as per my schedule.</li>
+<li><strong>Data Loading</strong> - Upload the csv file onto cloud instance, in this case, AWS S3 bucket.</li>
+</ol>
+<hr>
+<h1 id="requirements">Requirements</h1>
+<ul>
+<li>Apache Airflow</li>
+<li>EC2 instance (atleast t3.medium because we need to run Airflow which requires atleast 4 GB of memory)</li>
+<li>Twitter API Access</li>
+<li>Python package used:<br>
+-tweepy<br>
+-pandas<br>
+-json<br>
+-s3fs</li>
+</ul>
+<hr>
+<h1 id="data-extraction">Data Extraction</h1>
+<p>First we need an access to twitter API which can be requested <a href="https://developer.twitter.com/en/docs/twitter-api">here</a>. You might need to state the reasons for requesting access in order for your request to be approved. Once you have access, the steps to connect to the API endpoint is straightforward.</p>
+<p>We need the API access key and consumer key. The access key is for the server side key while the consumer key is for the client side. These can be generated from Twitter.</p>
+<p>Store the API and secret key into another separate python file in the same folder. For instance, in this project, the API key are stored in another file named <code>keys</code> with variable name <code>twitter_API_key</code>. To pass the value, we simply call the function from <code>keys</code>. Refer to code.</p>
+<p>To connect to the endpoint, we need to use the OAuthHandler method to pass in our twitter access key and secret. Then we use the <code>set_access_token</code> method to pass in our client-side key. Finally, we just have to pass the authenticator as an argument to the <code>API</code> method. This completes our connection. Refer to <a href="https://docs.tweepy.org/en/v3.5.0/auth_tutorial.html">Tweepy docs</a> for more information.</p>
+<h4 id="code">Code:</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#75715e">#configuring twitter API access</span>
+</span></span><span style="display:flex;"><span>access_key <span style="color:#f92672">=</span> keys<span style="color:#f92672">.</span>twitter_API_key
+</span></span><span style="display:flex;"><span>access_secret <span style="color:#f92672">=</span> keys<span style="color:#f92672">.</span>twitter_API_key_secret
+</span></span><span style="display:flex;"><span>consumer_key <span style="color:#f92672">=</span> keys<span style="color:#f92672">.</span>twitter_access_token
+</span></span><span style="display:flex;"><span>consumer_secret <span style="color:#f92672">=</span> keys<span style="color:#f92672">.</span>twitter_access_token_secret
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#authentication</span>
+</span></span><span style="display:flex;"><span>auth <span style="color:#f92672">=</span> tweepy<span style="color:#f92672">.</span>OAuthHandler(access_key, access_secret)
+</span></span><span style="display:flex;"><span>auth<span style="color:#f92672">.</span>set_access_token(consumer_key, consumer_secret)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#create API object</span>
+</span></span><span style="display:flex;"><span>api <span style="color:#f92672">=</span> tweepy<span style="color:#f92672">.</span>API(auth)
+</span></span></code></pre></div><p>Now that we are connected to twitter, we can scrape our data. To make it simple, I only want latest 200 tweets from @elonmusk. We can use the <code>user_timeline</code> method to get tweets from a specific user&rsquo;s timeline.</p>
+<h4 id="code-1">Code:</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>tweets <span style="color:#f92672">=</span> api<span style="color:#f92672">.</span>user_timeline(screen_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;@elonmusk&#39;</span>, count<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>, include_rts <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>, tweet_mode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;extended&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># tweet_mode is set to extended to get full text, otherwise we will only get max 140 words.</span>
+</span></span></code></pre></div><p>By default, twitter will pass data to us in JSON format. It&rsquo;s up to us to interpret this data. As per image below, a quick print of the above results gave us this alien language. This data needs to be cleaned later into a more convenient format.</p>
+<figure><img src="../../images/terminal_output_twitter.png"/>
+</figure>
+
+<hr>
+<h1 id="data-transformation">Data Transformation</h1>
+<p>I am only interested in the actual tweet, and perhaps some other metrics like username, retweet counts, date. I wanted to store these data in a more readable format, so I decided to use Python list to store and populate the data into a table using Pandas, and finally store the table into a csv file. The following code will do just that.</p>
+<h4 id="code-2">Code:</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>tweet_list <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> tweet <span style="color:#f92672">in</span> tweets:
+</span></span><span style="display:flex;"><span>        text <span style="color:#f92672">=</span> tweet<span style="color:#f92672">.</span>_json[<span style="color:#e6db74">&#34;full_text&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        refined_tweet <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;user&#34;</span>: tweet<span style="color:#f92672">.</span>user<span style="color:#f92672">.</span>screen_name,
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#39;text&#39;</span> : text,
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#39;favorite_count&#39;</span> : tweet<span style="color:#f92672">.</span>favorite_count,
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#39;retweet_count&#39;</span> : tweet<span style="color:#f92672">.</span>retweet_count,
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#39;created_at&#39;</span> : tweet<span style="color:#f92672">.</span>created_at}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        tweet_list<span style="color:#f92672">.</span>append(refined_tweet)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(tweet_list)
+</span></span><span style="display:flex;"><span>        df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#39;refined_tweets.csv&#39;</span>)
+</span></span></code></pre></div><p>And that concludes my simple transformation. The result of transformed data is as per below. Now we need to upload this file to the cloud, and schedule tasks to do the same thing each day or any time interval that we want, we will use Airflow for that.</p>
+<p><img src="../../images/twitter_csv.png" alt="img"></p>
+<hr>
+<h1 id="connecting-to-ec2-machine">Connecting to EC2 Machine</h1>
+<p>For setting up EC2 instance, read <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-methods.html#:~:text=Connect%20using%20the%20Amazon%20EC2%20%20%20,%20%20%20%20%20%20%20window.">here</a>. Once an EC2 instance is created, AWS will generate a key. To connect to EC2 instance, click &lsquo;connect&rsquo; on the EC2 instance and copy the command to initiate EC2 machine and paste it to terminal.</p>
+<p>Once connected, we need to install all dependencies that we need to run our program. These are:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt install python3-pip
+</span></span><span style="display:flex;"><span>sudo pip install apache-airflow
+</span></span><span style="display:flex;"><span>sudo pip install pandas 
+</span></span><span style="display:flex;"><span>sudo pip install s3fs
+</span></span><span style="display:flex;"><span>sudo pip install tweepy
+</span></span></code></pre></div><p>EC2 machine is now ready. Next, to run Airflow onto this machine.</p>
+<hr>
+<h1 id="data-orchestration">Data Orchestration</h1>
+<p>The default port used for Airflow is the 8080 port. Once the Airflow is running, we can access Airflow by copying my EC2 public DNS and pasting it to browser and adding &lsquo;/8080&rsquo; to the path. The Python file (run_etl.py) created for data extraction and transformation needs to be copied and uploaded to Airflow directory in EC2 machine. And I need to create a new folder to store these scripts, I created twitterDAG folder and put the python file here. To make sure airflow is running correctly, we need to specify to airflow as to where to find these files. To do this, I used nano bash editor and access airflow.config file and change dag_folder directory name to my desired folder name, in this case twitterDAG. This will make Airflow use this directory when running.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano airflow.config
+</span></span></code></pre></div><p><img src="../../images/nano_text_editor.png" alt="img"></p>
+<p>If everything is okay, we should be able to see twitterDAG name in the list of dags in Airflow.</p>
+<h4 id="creating-dag-file">Creating DAG file</h4>
+<p>DAG file is basically the orchestration file to instruct Airflow on how the program should be run. Read <a href="https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html">here</a> for more information about DAGs.
+3 key things to have in a DAG are:</p>
+<ol>
+<li>default_args - specifies the DAG arguments.</li>
+<li>DAG - the DAG object itself, this object will take default_args as its arguments.</li>
+<li>tasks - these are the tasks that we want Airflow to run</li>
+</ol>
+<p>My DAG program is very basic with all these 3 things in it (refer code). Tasks can also be ordered. But for this project, I only wanted to do one task which is to run my python script (which includes extraction and tranformation) and then upload the file to S3 bucket.</p>
+<h4 id="code-3">Code:</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> timedelta
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> airflow <span style="color:#f92672">import</span> DAG
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> airflow.operators.python_operator <span style="color:#f92672">import</span> PythonOperator
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> airflow.utils.dates <span style="color:#f92672">import</span> days_ago
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Twitter_airflow_project <span style="color:#f92672">import</span> run_etl
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>default_args <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;owner&#39;</span>: <span style="color:#e6db74">&#39;hisyam&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;depends_on_past&#39;</span>: <span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;start_date&#39;</span>: datetime(<span style="color:#ae81ff">2022</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">12</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;email&#39;</span>: [<span style="color:#e6db74">&#39;hisyamimran1996@gmail.com&#39;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;email_on_failure&#39;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;email_on_retry&#39;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;retries&#39;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;retry_delay&#39;</span>: timedelta(minutes<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dag <span style="color:#f92672">=</span> DAG(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;twitter_dag&#39;</span>,
+</span></span><span style="display:flex;"><span>    default_args<span style="color:#f92672">=</span>default_args,
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;DAG for twitter ETL project&#39;</span>,
+</span></span><span style="display:flex;"><span>    schedule_interval<span style="color:#f92672">=</span>timedelta(days<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>),
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dag_run_etl <span style="color:#f92672">=</span> PythonOperator(
+</span></span><span style="display:flex;"><span>    task_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;run_etl&#39;</span>,
+</span></span><span style="display:flex;"><span>    python_callable<span style="color:#f92672">=</span>run_etl,
+</span></span><span style="display:flex;"><span>    dag<span style="color:#f92672">=</span>dag, 
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dag_run_etl
+</span></span></code></pre></div><p>The PythonOperator is used to execute Python callables. I scheduled the <code>schedule_interval</code> to be 1 day, meaning that the DAG will run everyday at the same time as I run the previous day. the task <code>dag_run_etl</code> will run the python file named <code>run_etl</code> which is the file for data extraction and data transformation. This DAG file needs to be copied and paste into airflow directory in EC2 machine too.</p>
+<p>If everything is good, our DAG should be able to run. The DAG will have a green border if it&rsquo;s successfully deployed.</p>
+<p><img src="../../images/DAG_created_successfully.png" alt="DAG"></p>
+<hr>
+<h1 id="data-loading">Data Loading</h1>
+<p>I load the data to an S3 bucket. To do this, create a new bucket and copy the name of the bucket. Paste the name preceded with s3:// into the destination file when we created csv file earlier:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>df<span style="color:#f92672">.</span>to_csv(<span style="color:#e6db74">&#39;s3://</span><span style="color:#e6db74">{bucket_name}</span><span style="color:#e6db74">/refined_tweets.csv&#39;</span>)
+</span></span></code></pre></div><p>And we&rsquo;re done!</p>
+<p><img src="../../images/ETL_success.png" alt="img"></p>
+<p>The pipeline is successfully deployed in a CLoud Environment.</p>
+<hr>
+<h1 id="further-development-ideas">Further Development Ideas</h1>
+<p>Obviously there&rsquo;s no reason for me to get tweets from @elonmusk. This workflow can be the basis for other more sophisticated system. For example we can apply statistical analysis for word counts, take stocks for instance, we can scrape twitter data of stock names mentioned in twitter and apply some analysis to see trending stocks, and update this metrics everyday. This can be served as sentiment analysis, wherein if there&rsquo;s a spike in stock mentions, we can detect that and see how it correlates to market movement. From here, we opens up a lot of other analytical ideas like measuring correlation between twitter mentions vs price action etc.</p>
+<p>Those are some examples. But the workflow should be generally similar, just the complexity of codes and data size will be different.</p>
+<h1 id="source-code">Source Code</h1>
+<p>You can find the codes in my <a href="https://github.com/hisyamimran96/Twitter_ETL_Project">GitHub</a>.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://hisyamimran96.github.io/portfolio_hisyam/" >
+    &copy;  Hisyam Imran 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    
+    <a href="https://github.com/hisyamimran96" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.linkedin.com/in/hisyam-imran-hashim/" target="_blank" rel="noopener" class="linkedin ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" aria-label="follow on LinkedIn——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

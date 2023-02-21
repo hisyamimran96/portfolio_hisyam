@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Analysis on Hisyam Imran</title>
+    <link>https://hisyamimran96.github.io/portfolio_hisyam/tags/data-analysis/</link>
+    <description>Recent content in Data Analysis on Hisyam Imran</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Jan 2023 10:58:08 -0400</lastBuildDate><atom:link href="https://hisyamimran96.github.io/portfolio_hisyam/tags/data-analysis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FreecodeCamp Data Analysis with Python</title>
+      <link>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-3/</link>
+      <pubDate>Mon, 30 Jan 2023 10:58:08 -0400</pubDate>
+      
+      <guid>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-3/</guid>
+      <description>In this course, I learnt the fundamentals of data analysis with Python. This include how to read data from sources like CSVs and Databases, processing and cleaning the data, and how to use libraries like Numpy, Pandas, Matplotlib, and Seaborn to visualize data. The course require me to finish 5 data analysis projects to earn this certification.
+Click here to view certificate: show credential</description>
+    </item>
+    
+    <item>
+      <title>The CADS - Data Star Program (Jr Data Scientist)</title>
+      <link>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-4/</link>
+      <pubDate>Mon, 30 Jan 2023 10:58:08 -0400</pubDate>
+      
+      <guid>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-4/</guid>
+      <description>An intensive 2- months currated data science mentoring by experienced data scientists. Program structure includes exposure to Python programming for data science, BDA with Apache Spark, Inferential &amp;amp; Descriptive Stats, SQL, NoSQL, NLP, Deep Learning, Data Visualisation and Capstone Project for hands-on learning utilizing all skills learnt.
+Click here to view certificate: show credential</description>
+    </item>
+    
+    <item>
+      <title>FreecodeCamp Scientific Computing with Python</title>
+      <link>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-2/</link>
+      <pubDate>Mon, 02 Jan 2023 10:58:08 -0400</pubDate>
+      
+      <guid>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-2/</guid>
+      <description>In this course, I learnt Python fundamentals like variables, loops, conditionals, and functions. Then introduced to more advanced topics like complex data structures, networking, relational databases, and data visualization. The course require me to finish 5 Python projects to earn this certification.
+Click here to view certificate: show credential</description>
+    </item>
+    
+    <item>
+      <title>IBM Professional Data Engineering Certificate</title>
+      <link>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-1/</link>
+      <pubDate>Sun, 16 Oct 2022 10:58:08 -0400</pubDate>
+      
+      <guid>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-1/</guid>
+      <description>In this Professional Certificate, I learnt essential knowledge and skills to perform the many tasks of a data engineer. The course structure include fundamentals of Relational Databases, Database Architecture, Design &amp;amp; Administration, Data Warehousing, Querying databases with SQL and BI Tools, ETL with Python Programming language and Shell Scripts, NoSQL, and Big Data processing using Apache Spark. I have applied all these skills to complete a Capstone Project involving the design, deployment and management of a complete data engineering platform inspired by a real-world data analytics requirements scenario.</description>
+    </item>
+    
+  </channel>
+</rss>
