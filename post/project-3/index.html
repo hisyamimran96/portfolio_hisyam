@@ -17,12 +17,12 @@ What is candlestick pattern? In the world of financial market, Technical Analysi
     
 
     
-<link rel="stylesheet" href="../../portfolio_hisyam/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/portfolio_hisyam/ananke/css/main.min.css" >
 
 
 
   
-    <link rel="stylesheet" href="../../portfolio_hisyam/css/custom.css">
+    <link rel="stylesheet" href="/portfolio_hisyam/css/custom.css">
   
 
     
@@ -65,7 +65,7 @@ What is candlestick pattern? In the world of financial market, Technical Analysi
     <div class="bg-black-60">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="../../portfolio_hisyam/" class="f3 fw2 hover-white no-underline white-90 dib">
+    <a href="/portfolio_hisyam/" class="f3 fw2 hover-white no-underline white-90 dib">
       
         Hisyam Imran
       
@@ -77,31 +77,31 @@ What is candlestick pattern? In the world of financial market, Technical Analysi
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/about/" title="About me page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/about/" title="About me page">
               About me
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/experience/" title="Experience page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/experience/" title="Experience page">
               Experience
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/post/" title="Projects page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/post/" title="Projects page">
               Projects
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/courses_cert/" title="Certifications page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/courses_cert/" title="Certifications page">
               Certifications
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/contact/" title="Contact page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/contact/" title="Contact page">
               Contact
             </a>
           </li>
@@ -203,9 +203,9 @@ What is candlestick pattern? In the world of financial market, Technical Analysi
 <p>In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib.</p>
 <h4 id="what-is-candlestick-pattern">What is candlestick pattern?</h4>
 <p>In the world of financial market, <a href="https://www.investopedia.com/terms/t/technicalanalysis.asp">Technical Analysis</a> (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction. There are dozens of ways to analyze this. One of them is by using the Japanese Candlestick Patterns. Candlestick charts are thought to have been developed in the 18th century by Munehisa Homma, a Japanese rice trader. They were introduced to the Western world by Steve Nison in his book Japanese Candlestick Charting Techniques, first published in 1991.</p>
-<p><img src="../../images/candlestick.jpg" alt="img"></p>
+<p><img src="/images/candlestick.jpg" alt="img"></p>
 <p>The price data is represented by a &ldquo;candlestick&rdquo; with High, Low, Open and Close of a specific timeframe, usually daily. Green candle represent bullish formation, meaning the close is higher than the open and vice versa. When the data is span accross longer periods, these candles will form certain patterns that can dictate, based on probabilities of the likeliness of the direction the price will move, either to the upside or downside. TA-lib is an open-source library in Python that archives all these patterns recognition.</p>
-<p><img src="../../images/pattern.jpg" alt="img"></p>
+<p><img src="/images/pattern.jpg" alt="img"></p>
 <h4 id="how-will-this-program-work">How will this program work?</h4>
 <p>Note: For this project, I did not create a full database (which will be an idea to be developed further in the future), instead I only store the S&amp;P500 data into csv files. This means that if the index constituents change, it will not be reflected in this program. Also, for this project there will be no updating of the price automatically, I only focused on making the end-to-end WebApp functional (for now). In the future version, I might add additional feature to cater for data updating.</p>
 <ol>
@@ -229,7 +229,7 @@ What is candlestick pattern? In the world of financial market, Technical Analysi
 <p>To access Yahoo Finance API for market data, we use the python package yfinance. Refering to the yfinance <a href="https://pypi.org/project/yfinance/">documentations</a>, we can extract a particular stock price data using this code:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>data <span style="color:#f92672">=</span> yf<span style="color:#f92672">.</span>download(<span style="color:#e6db74">&#34;SPY&#34;</span>, start <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;2023-01-01&#34;</span>, end <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;2023-02-01&#34;</span>)
 </span></span></code></pre></div><p>The code is pretty much self-explanatory. Here we download price data of ticker &lsquo;SPY&rsquo; from Yahoo finance between start date to end date and stores the data into the variable <code>data</code>.  A simple print of this code will yield:</p>
-<p><img src="../../images/SPY_data_example.png" alt="img"></p>
+<p><img src="/images/SPY_data_example.png" alt="img"></p>
 <p>The &lsquo;Open&rsquo; is the start price of a trading day, the &lsquo;Close&rsquo; is the closing price. &lsquo;High&rsquo; is the highest point in which the price went up during that day and &lsquo;Low&rsquo; is the lowest price ofthe day. Volume is the total volume traded on the day. We can use this data to pass into TA-lib stock recognition function.</p>
 <p>From this <a href="https://github.com/datasets/s-and-p-500-companies/blob/master/data/constituents.csv">dataset</a>, we can get all the ticker symbols for S&amp;P500 stocks and feed them into yfinance. A simple program to do this can be written as follows:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;datasets/sp500.csv&#39;</span>) <span style="color:#66d9ef">as</span> f:
@@ -281,7 +281,7 @@ CDLEVENINGDOJISTAR  | Evening Doji Star
 <p>we need to input Open, High, Low and Close data which should be an array-like data structure. The function will return integer 100, -100 or 0 indicating whether there is a pattern found. For example if I want to scan for Engulfing Pattern, I use the CDLENGULFING and pass in Open, High, Low, and Close dataframe.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>engulfing <span style="color:#f92672">=</span> talib<span style="color:#f92672">.</span>CDLENGULFING(data[<span style="color:#e6db74">&#39;Open&#39;</span>], data[<span style="color:#e6db74">&#39;High&#39;</span>], data[<span style="color:#e6db74">&#39;Low&#39;</span>], data[<span style="color:#e6db74">&#39;Close&#39;</span>])
 </span></span></code></pre></div><p>A quick print of this will give me:</p>
-<p><img src="../../images/ta-lib-example.png" alt="img"></p>
+<p><img src="/images/ta-lib-example.png" alt="img"></p>
 <p>I can use this to screen through all my stock names, fetch price data, and pass the price data into TA-lib. Since I&rsquo;m only interested in the most recent data, I need to further filter where I will extract these results, to do this I can simply just select the last data point and pass in a conditional statement to categorise whether a pattern was found, if so whether it is bearish or bullish? Or none was found.</p>
 <h4 id="filtering-all-stocks">Filtering all stocks</h4>
 <p>Recall that I stored all the stocks price data in a csv for each stock symbol, now we can access these data by reading the csv.</p>
@@ -304,7 +304,7 @@ CDLEVENINGDOJISTAR  | Evening Doji Star
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
 </span></span><span style="display:flex;"><span>        stocks[symbol][pattern] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
 </span></span></code></pre></div><p>I use the os listdir function to list all my CSVs stored and loop through each file in the folder. For each file, I create a dataframe, get the symbol, and pass this dataframe to a TA-lib function, in this case I want to search for enguilfing pattern. Now, I can get the latest result by defining latest price which is the &rsquo;last&rsquo; variable. A quick print statement inside the conditionals will give the followuing result indicating a pattern was found.</p>
-<p><img src="../../images/example_.png" alt="img"></p>
+<p><img src="/images/example_.png" alt="img"></p>
 <p>Now the program is working. This will be the basis for the backend of my app. Now I can modify these codes to be more customizable and interactive so I can get any pattern that I want. And from here, I can integrate a front-end to make it more user-friendly.</p>
 <h1 id="building-flask-webapp">Building Flask WebApp</h1>
 <p>I use Flask as my front-end. For more information on Flask, visit the docs <a href="https://flask.palletsprojects.com/en/2.2.x/">here</a>. From the docs, to build a simple flask website, we just have to instantiate a Flask object. The syntax is like below:</p>
@@ -337,7 +337,7 @@ CDLEVENINGDOJISTAR  | Evening Doji Star
 </span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">form</span>&gt;
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
 </span></span></code></pre></div><p>Here, I basically created a simple dropdown form submission where it takes user&rsquo;s input and store it in a variable named &ldquo;pattern&rdquo;, this variable can be returned to my back-end to fetch the output. Here&rsquo;s a screenshot of how this code renders:</p>
-<p><img src="../../images/front-end.png" alt="img"></p>
+<p><img src="/images/front-end.png" alt="img"></p>
 <p>In this case, when a user select from a list of patterns and click &lsquo;Go&rsquo;, the program will fetch the pattern name and return it to my back-end for processing. As simple as that.</p>
 <h1 id="data-loading">Data Loading</h1>
 <h4 id="back-end-processing">Back-end processing</h4>
@@ -414,7 +414,7 @@ CDLEVENINGDOJISTAR  | Evening Doji Star
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">table</span>&gt;
 </span></span></code></pre></div><p>Recall that in my back-end, I return &lsquo;stocks&rsquo; to the front-end. In this code, the if statement make sure that the result will only show something if &lsquo;stocks&rsquo; is non-null.</p>
 <p>And that is basically the whole program. A screenshot of the working of this program is as below.</p>
-<p><img src="../../images/project-snapshot.png" alt="img"></p>
+<p><img src="/images/project-snapshot.png" alt="img"></p>
 <h1 id="updating-stocks-price-data">Updating Stocks Price Data</h1>
 <p>I created another web route to update stocks price data. It is basically exactly as data extraction section, but I put it in as a Flask method.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#34;/updateprice&#34;</span>)
@@ -441,23 +441,23 @@ CDLEVENINGDOJISTAR  | Evening Doji Star
 <ul class="pa0">
   
    <li class="list di">
-     <a href="../../portfolio_hisyam/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
+     <a href="/portfolio_hisyam/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
    </li>
   
    <li class="list di">
-     <a href="../../portfolio_hisyam/tags/docker/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">docker</a>
+     <a href="/portfolio_hisyam/tags/docker/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">docker</a>
    </li>
   
    <li class="list di">
-     <a href="../../portfolio_hisyam/tags/trading/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">trading</a>
+     <a href="/portfolio_hisyam/tags/trading/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">trading</a>
    </li>
   
    <li class="list di">
-     <a href="../../portfolio_hisyam/tags/stocks/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">stocks</a>
+     <a href="/portfolio_hisyam/tags/stocks/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">stocks</a>
    </li>
   
    <li class="list di">
-     <a href="../../portfolio_hisyam/tags/database/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">database</a>
+     <a href="/portfolio_hisyam/tags/database/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">database</a>
    </li>
   
 </ul>
@@ -477,7 +477,7 @@ CDLEVENINGDOJISTAR  | Evening Doji Star
     <ul class="pa0 list">
 	   
 	     <li  class="mb2">
-          <a href="../../portfolio_hisyam/post/project-2/">Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.</a>
+          <a href="/portfolio_hisyam/post/project-2/">Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.</a>
         </li>
 	    
     </ul>
