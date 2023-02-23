@@ -2,67 +2,76 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hisyam&#39;s Portfolio on Hisyam Imran</title>
-    <link>https://hisyamimran96.github.io/portfolio_hisyam/</link>
+    <link>/</link>
     <description>Recent content in Hisyam&#39;s Portfolio on Hisyam Imran</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Feb 2023 11:13:32 -0400</lastBuildDate><atom:link href="https://hisyamimran96.github.io/portfolio_hisyam/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Feb 2023 11:13:32 -0400</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Experience</title>
-      <link>https://hisyamimran96.github.io/portfolio_hisyam/experience/</link>
+      <link>/experience/</link>
       <pubDate>Thu, 02 Mar 2017 12:00:00 -0500</pubDate>
       
-      <guid>https://hisyamimran96.github.io/portfolio_hisyam/experience/</guid>
+      <guid>/experience/</guid>
       <description>Production/Manufacturing Support Engineer at TechnipFMC – Sep 2021 to Sep 2022
 Provide technical supports and solutions to all manufacturing/quality notifications raised during production with reference to industry and in-house standards. Provide inputs for design reviews to ensure manufacturing capabilities are aligned with design requirements and complying with core values (HSE, Quality and Delivery). Participate in continuous improvement projects to improve production yield where applicable. Participate in First Article reviews for new projects to assess manufacturing capacity versus demand and to pinpoint issues during production.</description>
     </item>
     
     <item>
+      <title>Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.</title>
+      <link>/post/project-2/</link>
+      <pubDate>Mon, 20 Feb 2023 11:13:32 -0400</pubDate>
+      
+      <guid>/post/project-2/</guid>
+      <description>NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that stored 1-year worth of daily price data of 10000+ stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust.</description>
+    </item>
+    
+    <item>
       <title>Trading Series: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</title>
-      <link>https://hisyamimran96.github.io/portfolio_hisyam/post/project-3/</link>
+      <link>/post/project-3/</link>
       <pubDate>Sun, 05 Feb 2023 11:13:32 -0400</pubDate>
       
-      <guid>https://hisyamimran96.github.io/portfolio_hisyam/post/project-3/</guid>
+      <guid>/post/project-3/</guid>
       <description>Overview In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib.
 What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction. There are dozens of ways to analyze this. One of them is by using the Japanese Candlestick Patterns.</description>
     </item>
     
     <item>
       <title>FreecodeCamp Data Analysis with Python</title>
-      <link>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-3/</link>
+      <link>/courses_cert/course-3/</link>
       <pubDate>Mon, 30 Jan 2023 10:58:08 -0400</pubDate>
       
-      <guid>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-3/</guid>
+      <guid>/courses_cert/course-3/</guid>
       <description>In this course, I learnt the fundamentals of data analysis with Python. This include how to read data from sources like CSVs and Databases, processing and cleaning the data, and how to use libraries like Numpy, Pandas, Matplotlib, and Seaborn to visualize data. The course require me to finish 5 data analysis projects to earn this certification.
 Click here to view certificate: show credential</description>
     </item>
     
     <item>
       <title>The CADS - Data Star Program (Jr Data Scientist)</title>
-      <link>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-4/</link>
+      <link>/courses_cert/course-4/</link>
       <pubDate>Mon, 30 Jan 2023 10:58:08 -0400</pubDate>
       
-      <guid>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-4/</guid>
+      <guid>/courses_cert/course-4/</guid>
       <description>An intensive 2- months currated data science mentoring by experienced data scientists. Program structure includes exposure to Python programming for data science, BDA with Apache Spark, Inferential &amp;amp; Descriptive Stats, SQL, NoSQL, NLP, Deep Learning, Data Visualisation and Capstone Project for hands-on learning utilizing all skills learnt.
 Click here to view certificate: show credential</description>
     </item>
     
     <item>
       <title>FreecodeCamp Scientific Computing with Python</title>
-      <link>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-2/</link>
+      <link>/courses_cert/course-2/</link>
       <pubDate>Mon, 02 Jan 2023 10:58:08 -0400</pubDate>
       
-      <guid>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-2/</guid>
+      <guid>/courses_cert/course-2/</guid>
       <description>In this course, I learnt Python fundamentals like variables, loops, conditionals, and functions. Then introduced to more advanced topics like complex data structures, networking, relational databases, and data visualization. The course require me to finish 5 Python projects to earn this certification.
 Click here to view certificate: show credential</description>
     </item>
     
     <item>
       <title>Twitter ETL Pipeline using Airflow</title>
-      <link>https://hisyamimran96.github.io/portfolio_hisyam/post/project-1/</link>
+      <link>/post/project-1/</link>
       <pubDate>Sat, 10 Dec 2022 11:00:59 -0400</pubDate>
       
-      <guid>https://hisyamimran96.github.io/portfolio_hisyam/post/project-1/</guid>
+      <guid>/post/project-1/</guid>
       <description>Overview In this Project, I built a data pipeline to scrape through tweets using tweepy, do basic data cleaning and load it onto AWS EC2 cloud instance. The data are stored in S3 bucket and orchestrated automatically using Apache Airflow.
 Figure 1: Overview of ETL data pipeline These are the steps required to configure our pipeline:
 Data Extraction - To make this simple, I decided to scrape only 200 latest tweets from @elonmusk.</description>
@@ -70,40 +79,28 @@ Data Extraction - To make this simple, I decided to scrape only 200 latest tweet
     
     <item>
       <title>IBM Professional Data Engineering Certificate</title>
-      <link>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-1/</link>
+      <link>/courses_cert/course-1/</link>
       <pubDate>Sun, 16 Oct 2022 10:58:08 -0400</pubDate>
       
-      <guid>https://hisyamimran96.github.io/portfolio_hisyam/courses_cert/course-1/</guid>
+      <guid>/courses_cert/course-1/</guid>
       <description>In this Professional Certificate, I learnt essential knowledge and skills to perform the many tasks of a data engineer. The course structure include fundamentals of Relational Databases, Database Architecture, Design &amp;amp; Administration, Data Warehousing, Querying databases with SQL and BI Tools, ETL with Python Programming language and Shell Scripts, NoSQL, and Big Data processing using Apache Spark. I have applied all these skills to complete a Capstone Project involving the design, deployment and management of a complete data engineering platform inspired by a real-world data analytics requirements scenario.</description>
     </item>
     
     <item>
-      <title>Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.</title>
-      <link>https://hisyamimran96.github.io/portfolio_hisyam/post/project-2/</link>
-      <pubDate>Tue, 11 Apr 2017 11:13:32 -0400</pubDate>
-      
-      <guid>https://hisyamimran96.github.io/portfolio_hisyam/post/project-2/</guid>
-      <description>NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that
-Overview The project can be categorised into stages:
-Database Design - design the relations between tables. In this stage I determined the fact and dimension tables of the whole database.
-Data Extraction - create connection between source and destination.</description>
-    </item>
-    
-    <item>
       <title>About me</title>
-      <link>https://hisyamimran96.github.io/portfolio_hisyam/about/</link>
+      <link>/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hisyamimran96.github.io/portfolio_hisyam/about/</guid>
+      <guid>/about/</guid>
       <description>My name is Hisyam Imran, Hashim. I am a mechanical engineer with deep passion in the area of data science and computers in general. Despite not having proper education path in the field, I&amp;rsquo;m constantly learning more on the subjects out of passion. I believe in the power of the curious mind. If paired with dedication and discipline, I&amp;rsquo;m confident that I will eventually be good in whatever that I do.</description>
     </item>
     
     <item>
       <title>Contact</title>
-      <link>https://hisyamimran96.github.io/portfolio_hisyam/contact/</link>
+      <link>/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://hisyamimran96.github.io/portfolio_hisyam/contact/</guid>
+      <guid>/contact/</guid>
       <description> Let&amp;rsquo;s connect! E-mail: hisyamimran1996@gmail.com LinkedIn: https://www.linkedin.com/in/hisyam-imran-hashim/ GitHub: https://github.com/hisyamimran96 </description>
     </item>
     

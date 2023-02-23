@@ -6,10 +6,7 @@
     
     <title>Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI. | Hisyam Imran</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that
-Overview The project can be categorised into stages:
-Database Design - design the relations between tables. In this stage I determined the fact and dimension tables of the whole database.
-Data Extraction - create connection between source and destination.">
+    <meta name="description" content="NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that stored 1-year worth of daily price data of 10000&#43; stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust.">
     <meta name="generator" content="Hugo 0.110.0">
     
     
@@ -19,12 +16,12 @@ Data Extraction - create connection between source and destination.">
     
 
     
-<link rel="stylesheet" href="/portfolio_hisyam/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
 
 
 
   
-    <link rel="stylesheet" href="/portfolio_hisyam/css/custom.css">
+    <link rel="stylesheet" href="/css/custom.css">
   
 
     
@@ -37,27 +34,18 @@ Data Extraction - create connection between source and destination.">
     
     
     <meta property="og:title" content="Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI." />
-<meta property="og:description" content="NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that
-Overview The project can be categorised into stages:
-Database Design - design the relations between tables. In this stage I determined the fact and dimension tables of the whole database.
-Data Extraction - create connection between source and destination." />
+<meta property="og:description" content="NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that stored 1-year worth of daily price data of 10000&#43; stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://hisyamimran96.github.io/portfolio_hisyam/post/project-2/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2017-04-11T11:13:32-04:00" />
-<meta property="article:modified_time" content="2017-04-11T11:13:32-04:00" /><meta property="og:site_name" content="Hisyam Imran" />
+<meta property="og:url" content="/post/project-2/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-20T11:13:32-04:00" />
+<meta property="article:modified_time" content="2023-02-20T11:13:32-04:00" /><meta property="og:site_name" content="Hisyam Imran" />
 <meta itemprop="name" content="Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.">
-<meta itemprop="description" content="NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that
-Overview The project can be categorised into stages:
-Database Design - design the relations between tables. In this stage I determined the fact and dimension tables of the whole database.
-Data Extraction - create connection between source and destination."><meta itemprop="datePublished" content="2017-04-11T11:13:32-04:00" />
-<meta itemprop="dateModified" content="2017-04-11T11:13:32-04:00" />
-<meta itemprop="wordCount" content="374">
+<meta itemprop="description" content="NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that stored 1-year worth of daily price data of 10000&#43; stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust."><meta itemprop="datePublished" content="2023-02-20T11:13:32-04:00" />
+<meta itemprop="dateModified" content="2023-02-20T11:13:32-04:00" />
+<meta itemprop="wordCount" content="3000">
 <meta itemprop="keywords" content="python,docker,trading,stocks,database," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI."/>
-<meta name="twitter:description" content="NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that
-Overview The project can be categorised into stages:
-Database Design - design the relations between tables. In this stage I determined the fact and dimension tables of the whole database.
-Data Extraction - create connection between source and destination."/>
+<meta name="twitter:description" content="NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that stored 1-year worth of daily price data of 10000&#43; stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust."/>
 
 	
   </head>
@@ -72,7 +60,7 @@ Data Extraction - create connection between source and destination."/>
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="/portfolio_hisyam/" class="f3 fw2 hover-white no-underline white-90 dib">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
       
         Hisyam Imran
       
@@ -84,31 +72,31 @@ Data Extraction - create connection between source and destination."/>
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/about/" title="About me page">
+            <a class="hover-white no-underline white-90" href="/about/" title="About me page">
               About me
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/experience/" title="Experience page">
+            <a class="hover-white no-underline white-90" href="/experience/" title="Experience page">
               Experience
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/post/" title="Projects page">
+            <a class="hover-white no-underline white-90" href="/post/" title="Projects page">
               Projects
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/courses_cert/" title="Certifications page">
+            <a class="hover-white no-underline white-90" href="/courses_cert/" title="Certifications page">
               Certifications
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/contact/" title="Contact page">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contact page">
               Contact
             </a>
           </li>
@@ -178,7 +166,7 @@ Data Extraction - create connection between source and destination."/>
   <div id="sharing" class="mt3 ananke-socials">
     
       
-      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://hisyamimran96.github.io/portfolio_hisyam/post/project-2/&amp;title=Trading%20Series:%20Design%20and%20build%20US%20stocks%20database%20WebApp%20with%20Alpaca-py,%20SQLite%20and%20FastAPI." class="ananke-social-link linkedin no-underline" aria-label="share on LinkedIn">
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=/post/project-2/&amp;title=Trading%20Series:%20Design%20and%20build%20US%20stocks%20database%20WebApp%20with%20Alpaca-py,%20SQLite%20and%20FastAPI." class="ananke-social-link linkedin no-underline" aria-label="share on LinkedIn">
         
         <span class="icon"> <svg style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
@@ -192,9 +180,13 @@ Data Extraction - create connection between source and destination."/>
 
       <h1 class="f1 athelas mt3 mb1">Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.</h1>
       
+      <p class="tracked">
+        By <strong>Hisyam</strong>
+      </p>
       
       
-      <time class="f6 mv4 dib tracked" datetime="2017-04-11T11:13:32-04:00">April 11, 2017</time>
+      
+      <time class="f6 mv4 dib tracked" datetime="2023-02-20T11:13:32-04:00">February 20, 2023</time>
       
 
       
@@ -203,72 +195,318 @@ Data Extraction - create connection between source and destination."/>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p style ="color: red;">
 NOTE: This page is a Work-in-Progress. The actual code is completed, but I'm still putting it all together in writing and will take time. THANKS!
 </p>
-<p>In this project, I created a database that</p>
-<h2 id="overview">Overview</h2>
-<p>The project can be categorised into stages:</p>
+<p>In this project, I created a database that stored 1-year worth of daily price data of 10000+ stocks/ETFs which can be used for screening purpose.  The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project <a href="/post/project-3/">S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</a> where I stated the improvements that can be done to make the apps more robust.
+For the web framework, I used FastAPI instead of Flask to test its functionalities.</p>
+<h1 id="overview">Overview</h1>
+<p>The project can be categorised into few stages (note that these stages are not necessarily chronological, some processes can be performed simultaneously in the same code):</p>
 <ol>
 <li>
-<p><strong>Database Design</strong> - design the relations between tables. In this stage I determined the fact and dimension tables of the whole database.</p>
+<p><strong>Database Design</strong> - design the relations between tables. In this stage I determined the fact and dimension tables of the whole database. To note however, the design is subject to changes overtime as I develop more features.</p>
 </li>
 <li>
-<p><strong>Data Extraction</strong> - create connection between source and destination. In this case I will be using an API endpoint from <a href="https://alpaca.markets/">Alpaca</a> as my main primary source of data.</p>
+<p><strong>Data Extraction</strong> - Create connection between source and destination. In this case I will be using an API endpoint from <a href="https://alpaca.markets/">Alpaca</a> as my main primary source of data, Alpaca provides Market Data API for free which includes 10000+ stocks and cryptos price data. As of 2023, Alpaca migrate its APIs to a new Alpaca SDK which comprises of all its API and websocket features, the alpaca_trade_api module in Python is deprecated and replaced with Alpaca-py SDK which uses more object oriented approach. Read more <a href="https://alpaca.markets/docs/python-sdk/">here</a>.</p>
 </li>
 <li>
-<p><strong>Data Cleaning/transformation</strong> - Clean the data, this includes dropping columns that are not useful for our use. For this project, I will only need the asset name, the asset ticker symbol and the what exchange the asset is listed in. Also, the data will be filtered into a format that is easier for us to handle, this will be dicussed further below.</p>
+<p><strong>Data Cleaning/transformation</strong> - Clean the data, this includes dropping columns that are not useful for my use. The data were also cleaned in terms of its formatting i.e. timestamp format. The new Alpaca API returns mostly object data and in the form of dataframe, because of the very large amount of data I want to extract, there needs to be a way to process this data in batches. I will explain how I do it in this section.</p>
 </li>
 </ol>
 <ol start="4">
-<li><strong>Data Loading</strong> - load the data into locally hosted PostgreSQL database.</li>
+<li>
+<p><strong>Data Loading</strong> - Load the data into embedded database using SQLite and Python. This will be the destination for my data, from here I can query stocks&rsquo; data and use them for whatever reason I want. For example, I can apply filtering to filter certain criteria that meets my trading requirement etc.</p>
+</li>
+<li>
+<p><strong>Scheduling Updates</strong> - Scheduling and logging database updates.</p>
+</li>
+<li>
+<p><strong>WebbApp using FastAPI</strong> - For interactivity. I&rsquo;m planning to put in features like stock filtering, sentiment analysis meter etc. based on my price database.</p>
+</li>
 </ol>
-<p>Tools used in this project:</p>
+<h1 id="requirements">Requirements</h1>
+<p>These are all the dependencies needed. It&rsquo;s a good practice to put this in a requirements.txt file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>sqlite3
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>alpaca_trade_api
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>sqlalchemy
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>alpaca<span style="color:#ff79c6">-</span>py
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>pandas
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>fastapi
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>uvicorn
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>jinja2
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>newtulipy
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>TA<span style="color:#ff79c6">-</span>lib
+</span></span></code></pre></div><h1 id="database-design">Database Design</h1>
+<p>My database is very basic at this point. I have 2 tables: asset and asset_price. The asset will be my main fact table, this is where asset details like stock names, symbols and exchange is stored. The asset_price comprise of each stock historical price, this table will reference the asset ID in asset table. The asset and asset_price table have a one-to-many relationship i.e. one stock can have many price open, high, low and close points (daily price value associated with the same stock). The ER diagram is as shown, this ER diagram was automatically generated using DBeaver tool after I run the SQL statements to create the DB. The dotted line represents one to many relationship with origin from asset table (denoted by the black diamond shape).</p>
+<p style ="text-align:center;">
+<img width = 700px; src="/images/Database-design.png">
+</p>
+<p>There are a couple of ways to create this DB. I chose to do this using python. So I created a python script named create_db.py which will establish a connection with my SQLite database and execute the statements. It is easier for me this way, so that in case something&rsquo;s wrong and I need to recreate the DB quickly I can just run this script. The script with SQL statements to create these tables are as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">import</span> sqlite3
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>connection <span style="color:#ff79c6">=</span> sqlite3<span style="color:#ff79c6">.</span>connect(<span style="color:#f1fa8c">&#39;assets_database.db&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>cursor <span style="color:#ff79c6">=</span> connection<span style="color:#ff79c6">.</span>cursor()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>cursor<span style="color:#ff79c6">.</span>execute(
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#f1fa8c">    CREATE TABLE IF NOT EXISTS asset 
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#f1fa8c">    (
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#f1fa8c">    id INTEGER PRIMARY KEY,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#f1fa8c">    ticker TEXT NOT NULL UNIQUE,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#f1fa8c">    name TEXT NOT NULL,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#f1fa8c">    exchange TEXT,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#f1fa8c">    asset_type TEXT
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#f1fa8c">    );
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#f1fa8c">&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>cursor<span style="color:#ff79c6">.</span>execute(
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>    <span style="color:#f1fa8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span><span style="color:#f1fa8c">    CREATE TABLE IF NOT EXISTS asset_price
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span><span style="color:#f1fa8c">    (
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span><span style="color:#f1fa8c">    id INTEGER PRIMARY KEY,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span><span style="color:#f1fa8c">    asset_id INTEGER,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span><span style="color:#f1fa8c">    date NOT NULL,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span><span style="color:#f1fa8c">    high NOT NULL, 
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span><span style="color:#f1fa8c">    low NOT NULL,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span><span style="color:#f1fa8c">    open NOT NULL,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span><span style="color:#f1fa8c">    close NOT NULL,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span><span style="color:#f1fa8c">    volume NOT NULL,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span><span style="color:#f1fa8c">    FOREIGN KEY (asset_id) REFERENCES asset(id)
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span><span style="color:#f1fa8c">    );
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span><span style="color:#f1fa8c">    
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span><span style="color:#f1fa8c">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>connection<span style="color:#ff79c6">.</span>commit()
+</span></span></code></pre></div><p>Here, I created an instance of sqlite connection to connect to my DB named assets_database.db, created an instance of cursor to interact with the DB and executed SQL statements. And finally, I commit the connection to apply the changes.</p>
+<p>In this schema, I defined the &lsquo;asset_id&rsquo; as the foreign key that references the &lsquo;id&rsquo; in asset table. This is the id associated to each stock name.</p>
+<h1 id="data-extraction">Data Extraction</h1>
+<h3 id="getting-stock-details">Getting stock details</h3>
+<p>I use the Alpaca-py SDK to fetch all asset details (stock name, stock symbol, stock exchange and stock type) and insert each into my database. To establish a connection with Alpaca SDK, I need to import Alpaca trading client. For US equity, Alpaca requires user to have the API key and secret, you can get them by creating an account with Alpaca. Next, I define the search_params using the GetAssetsRequest function and define the asset class that I desire, in this case it is US_EQUITY. So far, this process is a basic process defined by Alpaca&rsquo;s documentation. Refer code below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ff79c6">from</span> alpaca.trading.client <span style="color:#ff79c6">import</span> TradingClient
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#ff79c6">from</span> alpaca.trading.requests <span style="color:#ff79c6">import</span> GetAssetsRequest
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#6272a4">#setup alpaca client</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>trading_client <span style="color:#ff79c6">=</span> TradingClient(config<span style="color:#ff79c6">.</span>api_key, config<span style="color:#ff79c6">.</span>api_secret)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>search_params <span style="color:#ff79c6">=</span> GetAssetsRequest(asset_class<span style="color:#ff79c6">=</span>AssetClass<span style="color:#ff79c6">.</span>US_EQUITY)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>assets <span style="color:#ff79c6">=</span> trading_client<span style="color:#ff79c6">.</span>get_all_assets(search_params)
+</span></span></code></pre></div><p>Now, all I need to do is to use the get_all_assets function and input in search parameters as its argument. This function returns a The variable &lsquo;assets&rsquo; store all the information. A quick print of the result gives this.</p>
+<p style ="text-align:center;">
+<img src="/images/alpaca-request-example.png">
+</p>
+<p>Checking the type of data of each elements of this list gives me &lt;class &lsquo;alpaca.trading.models.Asset&rsquo;&gt; which is an object defined by Alpaca, we can understand more by looking at the definitions of each object from the Alpaca-py source code.</p>
+<p>That is how to get the stocks data. Now I can get the data that I needed and insert them into my database. The following code is the full code to populate my asset.db database.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">import</span> sqlite3
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">import</span> config
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">from</span> alpaca.trading.client <span style="color:#ff79c6">import</span> TradingClient
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">from</span> alpaca.trading.requests <span style="color:#ff79c6">import</span> GetAssetsRequest
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#ff79c6">from</span> alpaca.trading.enums <span style="color:#ff79c6">import</span> AssetClass, AssetStatus
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#6272a4">#setup db connection</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>connection <span style="color:#ff79c6">=</span> sqlite3<span style="color:#ff79c6">.</span>connect(<span style="color:#f1fa8c">&#39;assets_database.db&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>cursor <span style="color:#ff79c6">=</span> connection<span style="color:#ff79c6">.</span>cursor()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#6272a4">#setup alpaca client</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>trading_client <span style="color:#ff79c6">=</span> TradingClient(config<span style="color:#ff79c6">.</span>api_key, config<span style="color:#ff79c6">.</span>api_secret)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>search_params <span style="color:#ff79c6">=</span> GetAssetsRequest(asset_class<span style="color:#ff79c6">=</span>AssetClass<span style="color:#ff79c6">.</span>US_EQUITY)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>assets <span style="color:#ff79c6">=</span> trading_client<span style="color:#ff79c6">.</span>get_all_assets(search_params)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span><span style="color:#ff79c6">for</span> asset <span style="color:#ff79c6">in</span> assets:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    <span style="color:#ff79c6">if</span> asset<span style="color:#ff79c6">.</span>status <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;active&#34;</span> <span style="color:#ff79c6">and</span> asset<span style="color:#ff79c6">.</span>tradable:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>        <span style="color:#6272a4">#print(asset.symbol, asset.name, asset.exchange , asset.asset_class)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>        cursor<span style="color:#ff79c6">.</span>execute(<span style="color:#f1fa8c">&#34;INSERT INTO asset(ticker, name, exchange, asset_type) VALUES (?, ?, ?, ?)&#34;</span>, 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>                    (asset<span style="color:#ff79c6">.</span>symbol, asset<span style="color:#ff79c6">.</span>name, asset<span style="color:#ff79c6">.</span>exchange, asset<span style="color:#ff79c6">.</span>asset_class))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Added new asset: </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c"> | </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">.</span>format(asset<span style="color:#ff79c6">.</span>symbol, asset<span style="color:#ff79c6">.</span>name))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>connection<span style="color:#ff79c6">.</span>commit()
+</span></span></code></pre></div><p><strong>Code Explanation</strong>:</p>
+<p>First I define the sqlite connection to connect to my database, create a cursor to interact with it. Get the asset details from Alpaca API. Now for each asset, I only want active and tradable asset, so I do an if statements to eliminate the inactives and untradable ones. Finally, for each asset I insert the symbol, name, exchange and asset class into my database.</p>
+<h3 id="getting-stock-price-data">Getting stock price data</h3>
+<p>I created another python file to get price data, I named this file populate_price.py. The full code is shown below with explanations.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">from</span> alpaca.data.historical <span style="color:#ff79c6">import</span> CryptoHistoricalDataClient, StockHistoricalDataClient
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">from</span> alpaca.data.requests <span style="color:#ff79c6">import</span> CryptoBarsRequest, StockBarsRequest
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">from</span> alpaca.data.timeframe <span style="color:#ff79c6">import</span> TimeFrame
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">from</span> datetime <span style="color:#ff79c6">import</span> datetime, timedelta
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#ff79c6">import</span> time
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#ff79c6">import</span> sqlite3
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#ff79c6">import</span> config
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#ff79c6">import</span> pandas <span style="color:#ff79c6">as</span> pd
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#ff79c6">import</span> sqlalchemy
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#6272a4">#recording time to execute code</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>start_time <span style="color:#ff79c6">=</span> time<span style="color:#ff79c6">.</span>time()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#6272a4">#configure db connection </span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>connection <span style="color:#ff79c6">=</span> sqlite3<span style="color:#ff79c6">.</span>connect(<span style="color:#f1fa8c">&#39;assets_database.db&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>connection<span style="color:#ff79c6">.</span>row_factory <span style="color:#ff79c6">=</span> sqlite3<span style="color:#ff79c6">.</span>Row
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>cursor <span style="color:#ff79c6">=</span> connection<span style="color:#ff79c6">.</span>cursor()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span><span style="color:#6272a4">#configure sql engine</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>engine <span style="color:#ff79c6">=</span> sqlalchemy<span style="color:#ff79c6">.</span>create_engine(<span style="color:#f1fa8c">&#39;sqlite:///assets_database.db&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span><span style="color:#6272a4">#execute query</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>cursor<span style="color:#ff79c6">.</span>execute(<span style="color:#f1fa8c">&#34;SELECT * FROM asset;&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span><span style="color:#6272a4">#fetch stock list in current database</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>asset_list <span style="color:#ff79c6">=</span> cursor<span style="color:#ff79c6">.</span>fetchall()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span><span style="color:#6272a4">#store in list of symbol and dictionary of asset ids.</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>symbols <span style="color:#ff79c6">=</span> [asset[<span style="color:#f1fa8c">&#39;ticker&#39;</span>] <span style="color:#ff79c6">for</span> asset <span style="color:#ff79c6">in</span> asset_list]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>asset_dict <span style="color:#ff79c6">=</span> {}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span><span style="color:#ff79c6">for</span> asset <span style="color:#ff79c6">in</span> asset_list:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>    asset_dict[asset[<span style="color:#f1fa8c">&#39;ticker&#39;</span>]] <span style="color:#ff79c6">=</span> asset[<span style="color:#f1fa8c">&#39;id&#39;</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>cursor<span style="color:#ff79c6">.</span>execute(<span style="color:#f1fa8c">&#34;DELETE FROM asset_price;&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>connection<span style="color:#ff79c6">.</span>commit()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span><span style="color:#6272a4">#connecting to alpaca client</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span>client <span style="color:#ff79c6">=</span> StockHistoricalDataClient(config<span style="color:#ff79c6">.</span>api_key, config<span style="color:#ff79c6">.</span>api_secret)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span><span style="color:#6272a4">#defining batch size, to process price data by batches.</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span><span>df <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>DataFrame()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span>batch_size <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">500</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span><span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">0</span>, <span style="color:#8be9fd;font-style:italic">len</span>(symbols), batch_size):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span>    symbol_batch <span style="color:#ff79c6">=</span> symbols[i:i<span style="color:#ff79c6">+</span>chunk_size]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span><span>    request_params <span style="color:#ff79c6">=</span> StockBarsRequest(
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47</span><span>                    symbol_or_symbols<span style="color:#ff79c6">=</span>symbol_batch,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48</span><span>                    timeframe<span style="color:#ff79c6">=</span>TimeFrame<span style="color:#ff79c6">.</span>Day,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49</span><span>                    start<span style="color:#ff79c6">=</span>datetime<span style="color:#ff79c6">.</span>now() <span style="color:#ff79c6">-</span> timedelta(days<span style="color:#ff79c6">=</span><span style="color:#bd93f9">365</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">50</span><span>                    )
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">51</span><span>    bars <span style="color:#ff79c6">=</span> client<span style="color:#ff79c6">.</span>get_stock_bars(request_params)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">52</span><span>    df <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>concat([df,bars<span style="color:#ff79c6">.</span>df])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">53</span><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;Processing </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">/</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c"> stocks price data.&#39;</span><span style="color:#ff79c6">.</span>format(i<span style="color:#ff79c6">+</span>batch_size,<span style="color:#8be9fd;font-style:italic">len</span>(symbols)))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">54</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">55</span><span><span style="color:#6272a4">#continues to data cleaning</span>
+</span></span></code></pre></div><p><strong>Code Explanation:</strong></p>
+<p>Since I will be populating prices into my database, I need to do the standard process for connecting to database: define a connection and create a cursor. In this code, there is one extra step to make it easier for me to work with my data (this is optional), I assigned the sqlite3.Row to the connection&rsquo;s row_factory. This line of code essentially changes the default way of dealing with sqlite data which is a tuple, to a dictionary. This way I can call a row by calling its name instead of its position. For example in line</p>
+<p>To get the price data for each stock in my database, I need to query the symbol for each stock from my asset table then store them into a local variable called asset_list. To make it easy for me to populate the price data based on stocks ID, I created a list of symbol by iterating through this asset_list.</p>
+<p>Since my asset_price table references the stock ID, therefore I need a way to access the stock ID given stock symbol. So I created a mapping of the stock symbol to the corresponding stock ID, this mapping is stored as a dictionary named asset_dict. This way, I can reference the symbol name, and get the stock ID.</p>
+<p>To fetch price data from Alpaca SDK, I need to create a client and provide the api key and secret key to establish a connection to the historical price data endpoint. This is similar to the process I explained earlier, but now I&rsquo;m using the StockHistoricalDataClient to fetch the prices instead of stock details. Then, I define the parameters to search on and passes it to the client. The parameters are:</p>
 <ol>
-<li>
-<p><strong>Python</strong> - our main programming language.</p>
-</li>
-<li>
-<p><strong>Docker</strong> - to streamline development environments. So we can forget about dependencies problem with different OS.</p>
-</li>
-<li>
-<p><strong><a href="https://docs.timescale.com/timescaledb/latest/">TimescaleDB</a></strong> - Provide time-series and analytics functionality on-top of PostgreSQL. It supports the use of SQL for querying.
-Basically a RDBMS for time-series. This can be used further down when we want to analyse more complex data-sets like stock prices etc. but for now we are not using this yet.</p>
-</li>
-<li>
-<p><strong>PostgreSQL</strong> - for database management - CRUD operations. We use postgres to store stocks data.</p>
-</li>
-<li>
-<p><strong><a href="https://tableplus.com/">TablePlus</a></strong> - GUI for interacting with postgreSQL. (optional, we can still use terminal to execute queries)</p>
-</li>
+<li>Only daily price data.</li>
+<li>Only up to a year&rsquo;s worth of data for each stock.</li>
 </ol>
-<h2 id="database-design">Database Design</h2>
-<h2 id="data-extraction">Data Extraction</h2>
-<p>We will establish a connection with Alpaca&rsquo;s API endpoint to extract market data. Read <a href="https://alpaca.markets/docs/">here</a> for more info on Alpaca API. First install and import the required package into our environment.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#f92672">import</span> alpaca_trade_api <span style="color:#66d9ef">as</span> alpaca
-</span></span></code></pre></div><p>With reference to the <a href="https://alpaca.markets/docs/">Alpaca API docs</a>, we establish the endpoint connection using the following code:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>api <span style="color:#f92672">=</span> alpaca<span style="color:#f92672">.</span>REST(config<span style="color:#f92672">.</span>api_key, config<span style="color:#f92672">.</span>api_secret, base_url <span style="color:#f92672">=</span> config<span style="color:#f92672">.</span>endpoint)
-</span></span></code></pre></div><p>And finally we can extract all market data using the <code>list_assets()</code> method:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>assets <span style="color:#f92672">=</span> api<span style="color:#f92672">.</span>list_assets()
-</span></span></code></pre></div><p>When running this method, python will fetch all the market data. But we want to do some cleaning, only extracting what we want.</p>
-<h2 id="data-cleaningtransformation">Data cleaning/transformation</h2>
+<p>The client will return me the price data based on these parameters.</p>
+<p>In this process, I defined batch_size as the number of stocks to be processed at one time. Alpaca is able to fetch multiple names at one time, it will return a dataframe of prices associated with all the names. I set the batch size to be 500. This is where the symbols list I defined earlier will be utilised, to get each name in my database, I loop through this list of 500 names at a time and stored it into a variable named symbol_batch inside the loop. I then pass this variable as a request parameter to the client. The client will process each 500 names given, this way I can get all the associated price of each of the stock I had in my database. The result will return an object defined by Alpaca which provides the user a dictionary-like data structure, Alpaca made such that the result can be expressed as a Pandas dataframe simply by calling the .df method. For example, a quick print of a symbol name fetched by alpaca will give:</p>
+<p style ="text-align:center;">
+<img width = 700; src="/images/alpaca-price-data-example.png">
+</p>
+<p>I can access each data simply by calling the symbol of the stock, followed by the &lsquo;method&rsquo;. for example, bars[&lsquo;BBN&rsquo;].high will give me the value of &lsquo;high&rsquo; which is 17.15. This is great, but it is easier to work with a Pandas dataframe. By calling bars.df, a quick print of this will give me a proper dataframe:</p>
+<p style ="text-align:center;">
+<img width = 1000; src="/images/alpaca-price-data-pandas.png">
+</p>
+<p>This is way easier to process. I can play around with this data using Jupyter notebook to get a very interactive data manipulation environment. Now since I am iterating a few times to get the prices for all the 10000+ stock, I need to merge each newly fetched dataframe to the previous dataframe, to do this I use the Pandas concat method. And that concludes the data extraction process.</p>
+<h1 id="data-cleaningtransformation">Data cleaning/transformation</h1>
+<p>As said earlier, I do all my data transformation using Jupyter Notebook since I can simply run a cell and instantly get my result. I did just that, with a bit of experimentation, the following code sequence is used to process my data into my desired formatting.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#6272a4">#data cleaning</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>df<span style="color:#ff79c6">.</span>reset_index(inplace <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>df[<span style="color:#f1fa8c">&#39;timestamp&#39;</span>] <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>to_datetime(df[<span style="color:#f1fa8c">&#39;timestamp&#39;</span>]<span style="color:#ff79c6">.</span>dt<span style="color:#ff79c6">.</span>strftime(<span style="color:#f1fa8c">&#39;%m-</span><span style="color:#f1fa8c">%d</span><span style="color:#f1fa8c">-%Y&#39;</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>df <span style="color:#ff79c6">=</span> df<span style="color:#ff79c6">.</span>rename(columns<span style="color:#ff79c6">=</span>{<span style="color:#f1fa8c">&#39;symbol&#39;</span>:<span style="color:#f1fa8c">&#39;asset_id&#39;</span>,<span style="color:#f1fa8c">&#39;timestamp&#39;</span>:<span style="color:#f1fa8c">&#39;date&#39;</span>})
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>df <span style="color:#ff79c6">=</span> df<span style="color:#ff79c6">.</span>drop([<span style="color:#f1fa8c">&#39;trade_count&#39;</span>,<span style="color:#f1fa8c">&#39;vwap&#39;</span>],axis<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;columns&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>asset_id_column <span style="color:#ff79c6">=</span> []
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span><span style="color:#ff79c6">for</span> asset <span style="color:#ff79c6">in</span> df[<span style="color:#f1fa8c">&#39;asset_id&#39;</span>]:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>    asset_id_column<span style="color:#ff79c6">.</span>append(asset_dict[asset])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>df[<span style="color:#f1fa8c">&#39;asset_id&#39;</span>] <span style="color:#ff79c6">=</span> asset_id_column
+</span></span></code></pre></div><p><strong>Code Explanation:</strong></p>
+<p style ="text-align:center;">
+<img width = 1000; src="/images/jupyter-2.png">
+</p>
+<p>From the snippet of the data, it can be seen that the index is of the multiindex format, meaning we have a 2 &lsquo;columns&rsquo; of indexes, in which the timestamp is aggregated and grouped by symbol. This is not ideal for me as I want to insert into my database as defined during my database creation. Basically I want to &lsquo;unstack&rsquo; the symbol and let each row having the value for symbol. To do that I just have to reset the index. df.reset_index() do just that, this method essentially change the indexes into columns, and default a numerical index. This way I have the format that I want, shown below.</p>
+<p style ="text-align:center;">
+<img width = 1000; src="/images/jupyter-1.png">
+</p>
+<p>The inplace = True basically means that I want the changes to be applied to the original dataframe.</p>
+<p>Next, I want to rename the &lsquo;symbol&rsquo; column to &rsquo;ticker&rsquo; and the &rsquo;timestamp&rsquo; to &lsquo;date&rsquo; and I will drop the &rsquo;trade-count&rsquo; and &lsquo;vwap&rsquo; to make the columns the same as my database. This is important as I will use SQLAlchemy engine later to transfer this dataframe directly into my database, the columns naming need to be the same in order for it to work.</p>
+<p style ="text-align:center;">
+<img width = 1000; src="/images/jupyter-3.png">
+</p>
+<p>As you may noticed, the asset_id is not as what I expected, I need to change it to the IDs that I defined in my &lsquo;asset&rsquo; table earlier. This is where my stocks_dict that I created earlier is used.</p>
+<p style ="text-align:center;">
+<img width = 1000; src="/images/jupyter-4.png">
+</p>
+<p>As shown above, I created a list called asset_id_column. Now I loop through the column asset_id and replace each symbol with the associated value (ID) using the dictionary. This works because the symbol is the same as the key in my dictionary, by calling the key for each symbol, dictionary will return the value, which is the stock id. Now the table is good, we have the asset_id in &lsquo;asset_price&rsquo; table equals the id in &lsquo;asset&rsquo; table.</p>
+<h1 id="data-loading">Data Loading</h1>
+<p>The loading phase for stock details is already explained in the data extraction section as it was straightforward. Similarly, after transformeing the price data, loading the data is simply inserting them into our database. However, since for the price data is in the form of Pandas dataframe, the approach is slightly different. To make things easy, I use SQLalchemy to transfer the data into my database. First, we need to create the engine, an engine is basically an instance of sqlalchemy object that is used to connect to the database.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>engine <span style="color:#ff79c6">=</span> sqlalchemy<span style="color:#ff79c6">.</span>create_engine(<span style="color:#f1fa8c">&#39;sqlite:///assets_database.db&#39;</span>)
+</span></span></code></pre></div><p>this creates an engine, connected to my database. Now I can easily load my dataframe by using the to_sql method. This method requires the name of the table and the engine. It is important to include if_exists = &lsquo;append&rsquo; clause as sqlalchemy will rebuild the table and deleted all existing data if it is not specified.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>df<span style="color:#ff79c6">.</span>to_sql(<span style="color:#f1fa8c">&#39;asset_price&#39;</span>, engine, if_exists <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;append&#39;</span>, index <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">False</span> )
+</span></span></code></pre></div><p>And as simple as that, the database is populated and is ready to be used.</p>
+<h1 id="scheduling-updates">Scheduling Updates</h1>
+<p>The financial market is a very dynamic place where assets are constantly changing, sometimes companies change their names, sometimes companies get delisted, sometimes new IPOs are listed. To capture these changes, I need to schedule my database to update daily. Apart from that, the prices daily price data will also change everyday, I need to capture this change too.</p>
+<p>I&rsquo;m using windows OS for my PC, so I used the Windows Scheduler to run my script at certain time everyday.</p>
+<p><strong>Asset list updates</strong>
+I created a new python file named update_db.py. The full code is as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">import</span> sqlite3
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">import</span> config
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">import</span> datetime
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ff79c6">from</span> alpaca.trading.client <span style="color:#ff79c6">import</span> TradingClient
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#ff79c6">from</span> alpaca.trading.requests <span style="color:#ff79c6">import</span> GetAssetsRequest
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#ff79c6">from</span> alpaca.trading.enums <span style="color:#ff79c6">import</span> AssetClass
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>connection <span style="color:#ff79c6">=</span> sqlite3<span style="color:#ff79c6">.</span>connect(<span style="color:#f1fa8c">&#39;assets_database.db&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>cursor <span style="color:#ff79c6">=</span> connection<span style="color:#ff79c6">.</span>cursor()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>cursor<span style="color:#ff79c6">.</span>execute(<span style="color:#f1fa8c">&#34;SELECT * FROM asset;&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#6272a4">#fetch stock list in current database</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>current_asset_list <span style="color:#ff79c6">=</span> cursor<span style="color:#ff79c6">.</span>fetchall()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>current_symbols <span style="color:#ff79c6">=</span> [asset[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">for</span> asset <span style="color:#ff79c6">in</span> current_asset_list]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span><span style="color:#6272a4">#setup alpaca client</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>trading_client <span style="color:#ff79c6">=</span> TradingClient(config<span style="color:#ff79c6">.</span>api_key, config<span style="color:#ff79c6">.</span>api_secret)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>search_params <span style="color:#ff79c6">=</span> GetAssetsRequest(asset_class<span style="color:#ff79c6">=</span>AssetClass<span style="color:#ff79c6">.</span>US_EQUITY)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>assets <span style="color:#ff79c6">=</span> trading_client<span style="color:#ff79c6">.</span>get_all_assets(search_params)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span><span style="color:#6272a4">#counter</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>update_count <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>updated <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>new_assets <span style="color:#ff79c6">=</span> []
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span><span style="color:#6272a4">#loop through db</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span><span style="color:#ff79c6">for</span> asset <span style="color:#ff79c6">in</span> assets:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>    <span style="color:#6272a4">#get assets that is not in current database</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>    <span style="color:#ff79c6">if</span> asset<span style="color:#ff79c6">.</span>status <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;active&#34;</span> <span style="color:#ff79c6">and</span> asset<span style="color:#ff79c6">.</span>tradable <span style="color:#ff79c6">and</span> asset<span style="color:#ff79c6">.</span>symbol <span style="color:#ff79c6">not</span> <span style="color:#ff79c6">in</span> current_symbols:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;New asset added: </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">.</span>format(asset<span style="color:#ff79c6">.</span>symbol))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>        cursor<span style="color:#ff79c6">.</span>execute(<span style="color:#f1fa8c">&#34;INSERT INTO asset(ticker, name, exchange, asset_type) VALUES (?, ?, ?, ?)&#34;</span>, 
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>                       (asset<span style="color:#ff79c6">.</span>symbol, asset<span style="color:#ff79c6">.</span>name, asset<span style="color:#ff79c6">.</span>exchange, asset<span style="color:#ff79c6">.</span>asset_class ))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>        updated <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">True</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>        update_count <span style="color:#ff79c6">+=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>        new_assets<span style="color:#ff79c6">.</span>append(asset<span style="color:#ff79c6">.</span>symbol)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>        
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span><span style="color:#6272a4">#for logging purpose, I&#39;m setting this script to run everyday using Windows Scheduler.</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span>log <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">open</span>(<span style="color:#f1fa8c">r</span><span style="color:#f1fa8c">&#34;C:\Users\hisya\OneDrive\Desktop\Data Engineering Projects\Full-Stack Trading Project\log.txt&#34;</span>, <span style="color:#f1fa8c">&#34;a&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span>log<span style="color:#ff79c6">.</span>write(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c"> - Database updated.</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">.</span>format(datetime<span style="color:#ff79c6">.</span>datetime<span style="color:#ff79c6">.</span>now()))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span><span><span style="color:#ff79c6">if</span> updated:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span>    log<span style="color:#ff79c6">.</span>write(<span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c"> names added to database: </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">.</span>format(update_count,new_assets))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span>log<span style="color:#ff79c6">.</span>close()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span><span>connection<span style="color:#ff79c6">.</span>commit()
+</span></span></code></pre></div><p><strong>Code Explanation:</strong>
+The structure of this code is similar with populate_assets.py. But here, I query my database and get a list of current stocks in the database then compare the symbols with the ones that I fetch from Alpaca. If the ones fetched are not in the current database, I insert them into my database.</p>
+<p>Since I want this script to run everyday, I also want a logging feature. I can do this by using the open() function to open a text file called log.txt, each time this script runs I will write a log to indicate that the script runs successfully. The result is shown below in a screenshot showing that the database is updated everyday at 15PM UTC+8.</p>
+<p style ="text-align:center;">
+<img width = 1000; src="/images/logging.png">
+</p>
 <ul class="pa0">
   
    <li class="list di">
-     <a href="/portfolio_hisyam/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
+     <a href="/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
    </li>
   
    <li class="list di">
-     <a href="/portfolio_hisyam/tags/docker/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">docker</a>
+     <a href="/tags/docker/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">docker</a>
    </li>
   
    <li class="list di">
-     <a href="/portfolio_hisyam/tags/trading/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">trading</a>
+     <a href="/tags/trading/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">trading</a>
    </li>
   
    <li class="list di">
-     <a href="/portfolio_hisyam/tags/stocks/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">stocks</a>
+     <a href="/tags/stocks/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">stocks</a>
    </li>
   
    <li class="list di">
-     <a href="/portfolio_hisyam/tags/database/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">database</a>
+     <a href="/tags/database/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">database</a>
    </li>
   
 </ul>
@@ -283,6 +521,17 @@ Basically a RDBMS for time-series. This can be used further down when we want to
 
 
 
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/post/project-3/">Trading Series: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</a>
+        </li>
+	    
+    </ul>
+</div>
+
 </aside>
 
   </article>
@@ -290,7 +539,7 @@ Basically a RDBMS for time-series. This can be used further down when we want to
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://hisyamimran96.github.io/portfolio_hisyam/" >
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="/" >
     &copy;  Hisyam Imran 2023 
   </a>
     <div>
