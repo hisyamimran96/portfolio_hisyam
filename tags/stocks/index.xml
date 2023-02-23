@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>stocks on Hisyam Imran</title>
-    <link>/tags/stocks/</link>
+    <link>https://hisyamimran96.github.io/portfolio_hisyam_test/tags/stocks/</link>
     <description>Recent content in stocks on Hisyam Imran</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Feb 2023 11:13:32 -0400</lastBuildDate><atom:link href="/tags/stocks/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Feb 2023 11:13:32 -0400</lastBuildDate><atom:link href="https://hisyamimran96.github.io/portfolio_hisyam_test/tags/stocks/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.</title>
-      <link>/post/project-2/</link>
+      <link>https://hisyamimran96.github.io/portfolio_hisyam_test/post/project-2/</link>
       <pubDate>Mon, 20 Feb 2023 11:13:32 -0400</pubDate>
       
-      <guid>/post/project-2/</guid>
+      <guid>https://hisyamimran96.github.io/portfolio_hisyam_test/post/project-2/</guid>
       <description>NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that stored 1-year worth of daily price data of 10000+ stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust.</description>
     </item>
     
     <item>
       <title>Trading Series: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</title>
-      <link>/post/project-3/</link>
+      <link>https://hisyamimran96.github.io/portfolio_hisyam_test/post/project-3/</link>
       <pubDate>Sun, 05 Feb 2023 11:13:32 -0400</pubDate>
       
-      <guid>/post/project-3/</guid>
+      <guid>https://hisyamimran96.github.io/portfolio_hisyam_test/post/project-3/</guid>
       <description>Overview In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib.
 What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction. There are dozens of ways to analyze this. One of them is by using the Japanese Candlestick Patterns.</description>
     </item>
