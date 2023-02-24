@@ -6,8 +6,8 @@
     
     <title>Trading Series I: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask | Hisyam Imran</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Overview In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib.
-What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction. There are dozens of ways to analyze this. One of them is by using the Japanese Candlestick Patterns.">
+    <meta name="description" content="In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib. User can pick a pattern from a dropdown list and my program will filter from S&amp;P500 stocks and fetch names that meet the pattern criteria.
+Table Of ContentsOverview Data Extraction Data Transformation Building Flask WebApp Data Loading Updating Stocks Price Data Further Development Source Code Overview What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction.">
     <meta name="generator" content="Hugo 0.110.0">
     
     
@@ -35,21 +35,21 @@ What is candlestick pattern? In the world of financial market, Technical Analysi
     
     
     <meta property="og:title" content="Trading Series I: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask" />
-<meta property="og:description" content="Overview In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib.
-What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction. There are dozens of ways to analyze this. One of them is by using the Japanese Candlestick Patterns." />
+<meta property="og:description" content="In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib. User can pick a pattern from a dropdown list and my program will filter from S&amp;P500 stocks and fetch names that meet the pattern criteria.
+Table Of ContentsOverview Data Extraction Data Transformation Building Flask WebApp Data Loading Updating Stocks Price Data Further Development Source Code Overview What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hisyamimran96.github.io/portfolio_hisyam/post/project-3/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-02-05T11:13:32-04:00" />
 <meta property="article:modified_time" content="2023-02-05T11:13:32-04:00" /><meta property="og:site_name" content="Hisyam Imran" />
 <meta itemprop="name" content="Trading Series I: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask">
-<meta itemprop="description" content="Overview In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib.
-What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction. There are dozens of ways to analyze this. One of them is by using the Japanese Candlestick Patterns."><meta itemprop="datePublished" content="2023-02-05T11:13:32-04:00" />
+<meta itemprop="description" content="In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib. User can pick a pattern from a dropdown list and my program will filter from S&amp;P500 stocks and fetch names that meet the pattern criteria.
+Table Of ContentsOverview Data Extraction Data Transformation Building Flask WebApp Data Loading Updating Stocks Price Data Further Development Source Code Overview What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction."><meta itemprop="datePublished" content="2023-02-05T11:13:32-04:00" />
 <meta itemprop="dateModified" content="2023-02-05T11:13:32-04:00" />
-<meta itemprop="wordCount" content="3012">
+<meta itemprop="wordCount" content="3062">
 <meta itemprop="keywords" content="python,docker,trading,stocks,database," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Trading Series I: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask"/>
-<meta name="twitter:description" content="Overview In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib.
-What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction. There are dozens of ways to analyze this. One of them is by using the Japanese Candlestick Patterns."/>
+<meta name="twitter:description" content="In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib. User can pick a pattern from a dropdown list and my program will filter from S&amp;P500 stocks and fetch names that meet the pattern criteria.
+Table Of ContentsOverview Data Extraction Data Transformation Building Flask WebApp Data Loading Updating Stocks Price Data Further Development Source Code Overview What is candlestick pattern? In the world of financial market, Technical Analysis (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction."/>
 
 	
   </head>
@@ -202,9 +202,27 @@ What is candlestick pattern? In the world of financial market, Technical Analysi
 
       
       
+        <span class="f6 mv4 dib tracked"> - 15 minutes read </span>
+        <span class="f6 mv4 dib tracked"> - 3062 words </span>
+      
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="overview">Overview</h1>
-<p>In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib.</p>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>In this project, I built a WebApp using Flask to filter stocks using price pattern recognition module from TA-lib. User can pick a pattern from a dropdown list and my program will filter from S&amp;P500 stocks and fetch names that meet the pattern criteria.</p>
+<div>
+    <h1>Table Of Contents</h1>
+    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#data-extraction">Data Extraction</a></li>
+    <li><a href="#data-transformation">Data Transformation</a></li>
+    <li><a href="#building-flask-webapp">Building Flask WebApp</a></li>
+    <li><a href="#data-loading">Data Loading</a></li>
+    <li><a href="#updating-stocks-price-data">Updating Stocks Price Data</a></li>
+    <li><a href="#further-development">Further Development</a></li>
+    <li><a href="#source-code">Source Code</a></li>
+  </ol>
+</nav>
+</div>
+<h1 id="overview">Overview</h1>
 <h4 id="what-is-candlestick-pattern">What is candlestick pattern?</h4>
 <p>In the world of financial market, <a href="https://www.investopedia.com/terms/t/technicalanalysis.asp">Technical Analysis</a> (TA) is the art of interpreting price movement data and deriving insights on the likelihood of an asset to move in certain direction. There are dozens of ways to analyze this. One of them is by using the Japanese Candlestick Patterns. Candlestick charts are thought to have been developed in the 18th century by Munehisa Homma, a Japanese rice trader. They were introduced to the Western world by Steve Nison in his book Japanese Candlestick Charting Techniques, first published in 1991.</p>
 <p style ="text-align:center;">
@@ -218,19 +236,19 @@ What is candlestick pattern? In the world of financial market, Technical Analysi
 <p>Note: For this project, I did not create a full database (which will be an idea to be developed further in the future), instead I only store the S&amp;P500 data into csv files. This means that if the index constituents change, it will not be reflected in this program. Also, for this project there will be no updating of the price automatically, I only focused on making the end-to-end WebApp functional (for now). In the future version, I might add additional feature to cater for data updating.</p>
 <ol>
 <li>
-<p>Data Source: For the list of companies I used this <a href="https://github.com/datasets/s-and-p-500-companies/blob/master/data/constituents.csv">dataset</a>. For stock price data, I used yfinance API to fetch latest price of each stock.</p>
+<p><strong>Data Source:</strong> For the list of companies I used this <a href="https://github.com/datasets/s-and-p-500-companies/blob/master/data/constituents.csv">dataset</a>. For stock price data, I used yfinance API to fetch latest price of each stock.</p>
 </li>
 <li>
-<p>Data Extraction: The program will iterate through each company in the stocks list and pass the stock symbol to yfinance function, in return yfinance will fetch price data. These pricedata will be populated in a csv for each company.</p>
+<p><strong>Data Extraction:</strong> The program will iterate through each company in the stocks list and pass the stock symbol to yfinance function, in return yfinance will fetch price data. These pricedata will be populated in a csv for each company.</p>
 </li>
 <li>
-<p>Data Transformation: Use TA-lib to map the patterns to the price data. By default TA-lib will return an integer 0 if nothing matched, and 100 or -100 if a pattern matched. Then, make a conditional sequence to separate those names where a pattern was detected.</p>
+<p><strong>Data Transformation:</strong> Use TA-lib to map the patterns to the price data. By default TA-lib will return an integer 0 if nothing matched, and 100 or -100 if a pattern matched. Then, make a conditional sequence to separate those names where a pattern was detected.</p>
 </li>
 <li>
-<p>Front-end: using Flask to build a simple WebApp.</p>
+<p><strong>Web Framework:</strong> using Flask to build a simple WebApp with basic front-end.</p>
 </li>
 <li>
-<p>Data Loading: load detected stocks into a Flask App. The App will have some basic front-end UI for interactivity.</p>
+<p><strong>Data Loading:</strong> load detected stocks into a Flask App. The App will have some basic front-end UI for interactivity.</p>
 </li>
 </ol>
 <h1 id="data-extraction">Data Extraction</h1>

@@ -42,7 +42,7 @@
 <meta itemprop="name" content="Trading Series II: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.">
 <meta itemprop="description" content="In this project, I created a database that stored 1-year worth of daily price data of 10000&#43; stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust."><meta itemprop="datePublished" content="2023-02-20T11:13:32-04:00" />
 <meta itemprop="dateModified" content="2023-02-20T11:13:32-04:00" />
-<meta itemprop="wordCount" content="3415">
+<meta itemprop="wordCount" content="3461">
 <meta itemprop="keywords" content="python,docker,trading,stocks,database," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Trading Series II: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI."/>
 <meta name="twitter:description" content="In this project, I created a database that stored 1-year worth of daily price data of 10000&#43; stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust."/>
@@ -198,9 +198,27 @@
 
       
       
+        <span class="f6 mv4 dib tracked"> - 17 minutes read </span>
+        <span class="f6 mv4 dib tracked"> - 3461 words </span>
+      
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>In this project, I created a database that stored 1-year worth of daily price data of 10000+ stocks/ETFs which can be used for screening purpose.  The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project <a href="https://hisyamimran96.github.io/portfolio_hisyam/post/project-3/">S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</a> where I stated the improvements that can be done to make the apps more robust.
 For the web framework, I used FastAPI instead of Flask to test its functionalities.</p>
+<div>
+    <h1>Table Of Contents</h1>
+    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#database-design">Database Design</a></li>
+    <li><a href="#data-extraction">Data Extraction</a></li>
+    <li><a href="#data-cleaningtransformation">Data cleaning/transformation</a></li>
+    <li><a href="#data-loading">Data Loading</a></li>
+    <li><a href="#scheduling-updates">Scheduling Updates</a></li>
+    <li><a href="#building-webapp-using-fastapi">Building WebApp using FastAPI</a></li>
+  </ol>
+</nav>
+</div>
 <h1 id="overview">Overview</h1>
 <p>The project can be categorised into few stages (note that these stages are not necessarily chronological, some processes can be performed simultaneously in the same code):</p>
 <ol>
@@ -437,8 +455,8 @@ For the web framework, I used FastAPI instead of Flask to test its functionaliti
 <h1 id="scheduling-updates">Scheduling Updates</h1>
 <p>The financial market is a very dynamic place where assets are constantly changing, sometimes companies change their names, sometimes companies get delisted, sometimes new IPOs are listed. To capture these changes, I need to schedule my database to update daily. Apart from that, the prices daily price data will also change everyday, I need to capture this change too.</p>
 <p>I&rsquo;m using windows OS for my PC, so I used the Windows Scheduler to run my script at certain time everyday.</p>
-<p><strong>Asset list updates</strong><br>
-I created a new python file named update_db.py. The full code is as follows:</p>
+<h3 id="asset-list-updates">Asset list updates</h3>
+<p>I created a new python file named update_db.py. The full code is as follows:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">import</span> sqlite3
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">import</span> config
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#ff79c6">import</span> datetime
@@ -491,8 +509,8 @@ The structure of this code is similar with populate_assets.py. But here, I query
 <p style ="text-align:center;">
 <img width = 1000; src="../..images/logging.png">
 </p>
-<p><strong>Price data updates</strong><br>
-Similarly, another python script is created for updating price data. Additionally, I created another separate python file called &lsquo;functions.py&rsquo;. This file is to store the common function that I will be using, for example data cleaning. Since the same process of data cleaning will be repeated here, I figured it is more &lsquo;clean&rsquo; to dump all the codes into a function that I can call to perform these steps.</p>
+<h3 id="price-data-updates">Price data updates</h3>
+<p>Similarly, another python script is created for updating price data. Additionally, I created another separate python file called &lsquo;functions.py&rsquo;. This file is to store the common function that I will be using, for example data cleaning. Since the same process of data cleaning will be repeated here, I figured it is more &lsquo;clean&rsquo; to dump all the codes into a function that I can call to perform these steps.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4">#configure db connection </span>
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>connection <span style="color:#ff79c6">=</span> sqlite3<span style="color:#ff79c6">.</span>connect(<span style="color:#f1fa8c">&#39;assets_database.db&#39;</span>)
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>connection<span style="color:#ff79c6">.</span>row_factory <span style="color:#ff79c6">=</span> sqlite3<span style="color:#ff79c6">.</span>Row
@@ -555,7 +573,12 @@ The code is pretty much like the populate_price.py explained earlier. From the f
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#ff79c6">for</span> asset <span style="color:#ff79c6">in</span> df[<span style="color:#f1fa8c">&#39;asset_id&#39;</span>]:
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    asset_id_column<span style="color:#ff79c6">.</span>append(asset_dict[asset])
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>df[<span style="color:#f1fa8c">&#39;asset_id&#39;</span>] <span style="color:#ff79c6">=</span> asset_id_column
-</span></span></code></pre></div><h1 id="building-webapp-using-fastapi">Building WebApp using FastAPI</h1>
+</span></span></code></pre></div><h3 id="scheduling-using-windows-task-scheduler">Scheduling using Windows Task Scheduler</h3>
+<p>These scripts can be scheduled to run on my local PC everyday. It is fairly easy to setup a task in windows.</p>
+<p style ="text-align:center;">
+<img width = 1000; src="../../images/task-scheduler.png">
+</p>
+<h1 id="building-webapp-using-fastapi">Building WebApp using FastAPI</h1>
 <ul class="pa0">
   
    <li class="list di">
