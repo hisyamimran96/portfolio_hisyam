@@ -8,16 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Mar 2017 12:00:00 -0500</lastBuildDate><atom:link href="https://hisyamimran96.github.io/portfolio_hisyam/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.</title>
+      <title>Trading Series II: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.</title>
       <link>https://hisyamimran96.github.io/portfolio_hisyam/post/project-2/</link>
       <pubDate>Mon, 20 Feb 2023 11:13:32 -0400</pubDate>
       
       <guid>https://hisyamimran96.github.io/portfolio_hisyam/post/project-2/</guid>
-      <description>NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that stored 1-year worth of daily price data of 10000+ stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust.</description>
+      <description>In this project, I created a database that stored 1-year worth of daily price data of 10000+ stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust.</description>
     </item>
     
     <item>
-      <title>Trading Series: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</title>
+      <title>Trading Series I: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</title>
       <link>https://hisyamimran96.github.io/portfolio_hisyam/post/project-3/</link>
       <pubDate>Sun, 05 Feb 2023 11:13:32 -0400</pubDate>
       

@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI. | Hisyam Imran</title>
+    <title>Trading Series II: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI. | Hisyam Imran</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that stored 1-year worth of daily price data of 10000&#43; stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust.">
+    <meta name="description" content="In this project, I created a database that stored 1-year worth of daily price data of 10000&#43; stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust.">
     <meta name="generator" content="Hugo 0.110.0">
     
     
@@ -16,12 +16,12 @@
     
 
     
-<link rel="stylesheet" href="/portfolio_hisyam/ananke/css/main.min.css" >
+<link rel="stylesheet" href="../../portfolio_hisyam/ananke/css/main.min.css" >
 
 
 
   
-    <link rel="stylesheet" href="/portfolio_hisyam/css/custom.css">
+    <link rel="stylesheet" href="../../portfolio_hisyam/css/custom.css">
   
 
     
@@ -33,19 +33,19 @@
 
     
     
-    <meta property="og:title" content="Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI." />
-<meta property="og:description" content="NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that stored 1-year worth of daily price data of 10000&#43; stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust." />
+    <meta property="og:title" content="Trading Series II: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI." />
+<meta property="og:description" content="In this project, I created a database that stored 1-year worth of daily price data of 10000&#43; stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hisyamimran96.github.io/portfolio_hisyam/post/project-2/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-02-20T11:13:32-04:00" />
 <meta property="article:modified_time" content="2023-02-20T11:13:32-04:00" /><meta property="og:site_name" content="Hisyam Imran" />
-<meta itemprop="name" content="Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.">
-<meta itemprop="description" content="NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that stored 1-year worth of daily price data of 10000&#43; stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust."><meta itemprop="datePublished" content="2023-02-20T11:13:32-04:00" />
+<meta itemprop="name" content="Trading Series II: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.">
+<meta itemprop="description" content="In this project, I created a database that stored 1-year worth of daily price data of 10000&#43; stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust."><meta itemprop="datePublished" content="2023-02-20T11:13:32-04:00" />
 <meta itemprop="dateModified" content="2023-02-20T11:13:32-04:00" />
-<meta itemprop="wordCount" content="3000">
+<meta itemprop="wordCount" content="3415">
 <meta itemprop="keywords" content="python,docker,trading,stocks,database," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI."/>
-<meta name="twitter:description" content="NOTE: This page is a Work-in-Progress. The actual code is completed, but I&#39;m still putting it all together in writing and will take time. THANKS! In this project, I created a database that stored 1-year worth of daily price data of 10000&#43; stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust."/>
+<meta name="twitter:title" content="Trading Series II: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI."/>
+<meta name="twitter:description" content="In this project, I created a database that stored 1-year worth of daily price data of 10000&#43; stocks/ETFs which can be used for screening purpose. The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask where I stated the improvements that can be done to make the apps more robust."/>
 
 	
   </head>
@@ -56,11 +56,12 @@
    
   
 
-  <header>
-    <div class="bg-black">
+  
+  <header class="cover bg-top" style="background-image: url('https://hisyamimran96.github.io/portfolio_hisyam/images/stock_market_visual.png');">
+    <div class="bg-black-60">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="/portfolio_hisyam/" class="f3 fw2 hover-white no-underline white-90 dib">
+    <a href="../../portfolio_hisyam/" class="f3 fw2 hover-white no-underline white-90 dib">
       
         Hisyam Imran
       
@@ -72,31 +73,31 @@
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/about/" title="About me page">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/about/" title="About me page">
               About me
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/experience/" title="Experience page">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/experience/" title="Experience page">
               Experience
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/post/" title="Projects page">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/post/" title="Projects page">
               Projects
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/courses_cert/" title="Certifications page">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/courses_cert/" title="Certifications page">
               Certifications
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/contact/" title="Contact page">
+            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/contact/" title="Contact page">
               Contact
             </a>
           </li>
@@ -138,6 +139,12 @@
   </div>
 </nav>
 
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <div class="f2 f1-l fw2 white-90 mb0 lh-title">Trading Series II: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.</div>
+          
+        
+      </div>
     </div>
   </header>
 
@@ -166,7 +173,7 @@
   <div id="sharing" class="mt3 ananke-socials">
     
       
-      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://hisyamimran96.github.io/portfolio_hisyam/post/project-2/&amp;title=Trading%20Series:%20Design%20and%20build%20US%20stocks%20database%20WebApp%20with%20Alpaca-py,%20SQLite%20and%20FastAPI." class="ananke-social-link linkedin no-underline" aria-label="share on LinkedIn">
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://hisyamimran96.github.io/portfolio_hisyam/post/project-2/&amp;title=Trading%20Series%20II:%20Design%20and%20build%20US%20stocks%20database%20WebApp%20with%20Alpaca-py,%20SQLite%20and%20FastAPI." class="ananke-social-link linkedin no-underline" aria-label="share on LinkedIn">
         
         <span class="icon"> <svg style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
@@ -178,7 +185,7 @@
   </div>
 
 
-      <h1 class="f1 athelas mt3 mb1">Trading Series: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.</h1>
+      <h1 class="f1 athelas mt3 mb1">Trading Series II: Design and build US stocks database WebApp with Alpaca-py, SQLite and FastAPI.</h1>
       
       <p class="tracked">
         By <strong>Hisyam</strong>
@@ -192,10 +199,7 @@
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p style ="color: red;">
-NOTE: This page is a Work-in-Progress. The actual code is completed, but I'm still putting it all together in writing and will take time. THANKS!
-</p>
-<p>In this project, I created a database that stored 1-year worth of daily price data of 10000+ stocks/ETFs which can be used for screening purpose.  The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project <a href="https://hisyamimran96.github.io/portfolio_hisyam/post/project-3/">S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</a> where I stated the improvements that can be done to make the apps more robust.
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>In this project, I created a database that stored 1-year worth of daily price data of 10000+ stocks/ETFs which can be used for screening purpose.  The price is scheduled to be updated daily using Windows scheduler (equivalent to cronjob for Linux). This is a continuation/improvement to the project <a href="https://hisyamimran96.github.io/portfolio_hisyam/post/project-3/">S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</a> where I stated the improvements that can be done to make the apps more robust.
 For the web framework, I used FastAPI instead of Flask to test its functionalities.</p>
 <h1 id="overview">Overview</h1>
 <p>The project can be categorised into few stages (note that these stages are not necessarily chronological, some processes can be performed simultaneously in the same code):</p>
@@ -218,7 +222,7 @@ For the web framework, I used FastAPI instead of Flask to test its functionaliti
 <p><strong>Scheduling Updates</strong> - Scheduling and logging database updates.</p>
 </li>
 <li>
-<p><strong>WebbApp using FastAPI</strong> - For interactivity. I&rsquo;m planning to put in features like stock filtering, sentiment analysis meter etc. based on my price database.</p>
+<p><strong>Building WebbApp using FastAPI</strong> - For interactivity. I&rsquo;m planning to put in features like stock filtering, sentiment analysis meter etc. based on my price database.</p>
 </li>
 </ol>
 <h1 id="requirements">Requirements</h1>
@@ -236,7 +240,7 @@ For the web framework, I used FastAPI instead of Flask to test its functionaliti
 </span></span></code></pre></div><h1 id="database-design">Database Design</h1>
 <p>My database is very basic at this point. I have 2 tables: asset and asset_price. The asset will be my main fact table, this is where asset details like stock names, symbols and exchange is stored. The asset_price comprise of each stock historical price, this table will reference the asset ID in asset table. The asset and asset_price table have a one-to-many relationship i.e. one stock can have many price open, high, low and close points (daily price value associated with the same stock). The ER diagram is as shown, this ER diagram was automatically generated using DBeaver tool after I run the SQL statements to create the DB. The dotted line represents one to many relationship with origin from asset table (denoted by the black diamond shape).</p>
 <p style ="text-align:center;">
-<img width = 700px; src="/images/Database-design.png">
+<img width = 700px; src="../../images/Database-design.png">
 </p>
 <p>There are a couple of ways to create this DB. I chose to do this using python. So I created a python script named create_db.py which will establish a connection with my SQLite database and execute the statements. It is easier for me this way, so that in case something&rsquo;s wrong and I need to recreate the DB quickly I can just run this script. The script with SQL statements to create these tables are as below:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>
@@ -289,7 +293,7 @@ For the web framework, I used FastAPI instead of Flask to test its functionaliti
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>assets <span style="color:#ff79c6">=</span> trading_client<span style="color:#ff79c6">.</span>get_all_assets(search_params)
 </span></span></code></pre></div><p>Now, all I need to do is to use the get_all_assets function and input in search parameters as its argument. This function returns a The variable &lsquo;assets&rsquo; store all the information. A quick print of the result gives this.</p>
 <p style ="text-align:center;">
-<img src="/images/alpaca-request-example.png">
+<img src="../../images/alpaca-request-example.png">
 </p>
 <p>Checking the type of data of each elements of this list gives me &lt;class &lsquo;alpaca.trading.models.Asset&rsquo;&gt; which is an object defined by Alpaca, we can understand more by looking at the definitions of each object from the Alpaca-py source code.</p>
 <p>That is how to get the stocks data. Now I can get the data that I needed and insert them into my database. The following code is the full code to populate my asset.db database.</p>
@@ -388,11 +392,11 @@ For the web framework, I used FastAPI instead of Flask to test its functionaliti
 <p>The client will return me the price data based on these parameters.</p>
 <p>In this process, I defined batch_size as the number of stocks to be processed at one time. Alpaca is able to fetch multiple names at one time, it will return a dataframe of prices associated with all the names. I set the batch size to be 500. This is where the symbols list I defined earlier will be utilised, to get each name in my database, I loop through this list of 500 names at a time and stored it into a variable named symbol_batch inside the loop. I then pass this variable as a request parameter to the client. The client will process each 500 names given, this way I can get all the associated price of each of the stock I had in my database. The result will return an object defined by Alpaca which provides the user a dictionary-like data structure, Alpaca made such that the result can be expressed as a Pandas dataframe simply by calling the .df method. For example, a quick print of a symbol name fetched by alpaca will give:</p>
 <p style ="text-align:center;">
-<img width = 700; src="/images/alpaca-price-data-example.png">
+<img width = 700; src="../../images/alpaca-price-data-example.png">
 </p>
 <p>I can access each data simply by calling the symbol of the stock, followed by the &lsquo;method&rsquo;. for example, bars[&lsquo;BBN&rsquo;].high will give me the value of &lsquo;high&rsquo; which is 17.15. This is great, but it is easier to work with a Pandas dataframe. By calling bars.df, a quick print of this will give me a proper dataframe:</p>
 <p style ="text-align:center;">
-<img width = 1000; src="/images/alpaca-price-data-pandas.png">
+<img width = 1000; src="../../images/alpaca-price-data-pandas.png">
 </p>
 <p>This is way easier to process. I can play around with this data using Jupyter notebook to get a very interactive data manipulation environment. Now since I am iterating a few times to get the prices for all the 10000+ stock, I need to merge each newly fetched dataframe to the previous dataframe, to do this I use the Pandas concat method. And that concludes the data extraction process.</p>
 <h1 id="data-cleaningtransformation">Data cleaning/transformation</h1>
@@ -408,20 +412,20 @@ For the web framework, I used FastAPI instead of Flask to test its functionaliti
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>df[<span style="color:#f1fa8c">&#39;asset_id&#39;</span>] <span style="color:#ff79c6">=</span> asset_id_column
 </span></span></code></pre></div><p><strong>Code Explanation:</strong></p>
 <p style ="text-align:center;">
-<img width = 1000; src="/images/jupyter-2.png">
+<img width = 1000; src="../../images/jupyter-2.png">
 </p>
 <p>From the snippet of the data, it can be seen that the index is of the multiindex format, meaning we have a 2 &lsquo;columns&rsquo; of indexes, in which the timestamp is aggregated and grouped by symbol. This is not ideal for me as I want to insert into my database as defined during my database creation. Basically I want to &lsquo;unstack&rsquo; the symbol and let each row having the value for symbol. To do that I just have to reset the index. df.reset_index() do just that, this method essentially change the indexes into columns, and default a numerical index. This way I have the format that I want, shown below.</p>
 <p style ="text-align:center;">
-<img width = 1000; src="/images/jupyter-1.png">
+<img width = 1000; src="../../images/jupyter-1.png">
 </p>
 <p>The inplace = True basically means that I want the changes to be applied to the original dataframe.</p>
 <p>Next, I want to rename the &lsquo;symbol&rsquo; column to &rsquo;ticker&rsquo; and the &rsquo;timestamp&rsquo; to &lsquo;date&rsquo; and I will drop the &rsquo;trade-count&rsquo; and &lsquo;vwap&rsquo; to make the columns the same as my database. This is important as I will use SQLAlchemy engine later to transfer this dataframe directly into my database, the columns naming need to be the same in order for it to work.</p>
 <p style ="text-align:center;">
-<img width = 1000; src="/images/jupyter-3.png">
+<img width = 1000; src="../../images/jupyter-3.png">
 </p>
 <p>As you may noticed, the asset_id is not as what I expected, I need to change it to the IDs that I defined in my &lsquo;asset&rsquo; table earlier. This is where my stocks_dict that I created earlier is used.</p>
 <p style ="text-align:center;">
-<img width = 1000; src="/images/jupyter-4.png">
+<img width = 1000; src="../../images/jupyter-4.png">
 </p>
 <p>As shown above, I created a list called asset_id_column. Now I loop through the column asset_id and replace each symbol with the associated value (ID) using the dictionary. This works because the symbol is the same as the key in my dictionary, by calling the key for each symbol, dictionary will return the value, which is the stock id. Now the table is good, we have the asset_id in &lsquo;asset_price&rsquo; table equals the id in &lsquo;asset&rsquo; table.</p>
 <h1 id="data-loading">Data Loading</h1>
@@ -433,7 +437,7 @@ For the web framework, I used FastAPI instead of Flask to test its functionaliti
 <h1 id="scheduling-updates">Scheduling Updates</h1>
 <p>The financial market is a very dynamic place where assets are constantly changing, sometimes companies change their names, sometimes companies get delisted, sometimes new IPOs are listed. To capture these changes, I need to schedule my database to update daily. Apart from that, the prices daily price data will also change everyday, I need to capture this change too.</p>
 <p>I&rsquo;m using windows OS for my PC, so I used the Windows Scheduler to run my script at certain time everyday.</p>
-<p><strong>Asset list updates</strong>
+<p><strong>Asset list updates</strong><br>
 I created a new python file named update_db.py. The full code is as follows:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ff79c6">import</span> sqlite3
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#ff79c6">import</span> config
@@ -481,32 +485,97 @@ I created a new python file named update_db.py. The full code is as follows:</p>
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span>log<span style="color:#ff79c6">.</span>close()
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span>
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span><span>connection<span style="color:#ff79c6">.</span>commit()
-</span></span></code></pre></div><p><strong>Code Explanation:</strong>
+</span></span></code></pre></div><p><strong>Code Explanation:</strong><br>
 The structure of this code is similar with populate_assets.py. But here, I query my database and get a list of current stocks in the database then compare the symbols with the ones that I fetch from Alpaca. If the ones fetched are not in the current database, I insert them into my database.</p>
 <p>Since I want this script to run everyday, I also want a logging feature. I can do this by using the open() function to open a text file called log.txt, each time this script runs I will write a log to indicate that the script runs successfully. The result is shown below in a screenshot showing that the database is updated everyday at 15PM UTC+8.</p>
 <p style ="text-align:center;">
-<img width = 1000; src="/images/logging.png">
+<img width = 1000; src="../../images/logging.png">
 </p>
+<p><strong>Price data updates</strong><br>
+Similarly, another python script is created for updating price data. Additionally, I created another separate python file called &lsquo;functions.py&rsquo;. This file is to store the common function that I will be using, for example data cleaning. Since the same process of data cleaning will be repeated here, I figured it is more &lsquo;clean&rsquo; to dump all the codes into a function that I can call to perform these steps.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#6272a4">#configure db connection </span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>connection <span style="color:#ff79c6">=</span> sqlite3<span style="color:#ff79c6">.</span>connect(<span style="color:#f1fa8c">&#39;assets_database.db&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>connection<span style="color:#ff79c6">.</span>row_factory <span style="color:#ff79c6">=</span> sqlite3<span style="color:#ff79c6">.</span>Row
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>cursor <span style="color:#ff79c6">=</span> connection<span style="color:#ff79c6">.</span>cursor()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#6272a4">#configure sql engine</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>engine <span style="color:#ff79c6">=</span> sqlalchemy<span style="color:#ff79c6">.</span>create_engine(<span style="color:#f1fa8c">&#39;sqlite:///assets_database.db&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#6272a4">#execute query</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>cursor<span style="color:#ff79c6">.</span>execute(<span style="color:#f1fa8c">&#34;SELECT * FROM asset;&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#6272a4">#fetch stock list in current database</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>asset_list <span style="color:#ff79c6">=</span> cursor<span style="color:#ff79c6">.</span>fetchall()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span><span style="color:#6272a4">#store in list of symbol and dictionary of asset ids.</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>symbols <span style="color:#ff79c6">=</span> [asset[<span style="color:#f1fa8c">&#39;ticker&#39;</span>] <span style="color:#ff79c6">for</span> asset <span style="color:#ff79c6">in</span> asset_list]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>asset_dict <span style="color:#ff79c6">=</span> {}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span><span style="color:#ff79c6">for</span> asset <span style="color:#ff79c6">in</span> asset_list:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>    asset_dict[asset[<span style="color:#f1fa8c">&#39;ticker&#39;</span>]] <span style="color:#ff79c6">=</span> asset[<span style="color:#f1fa8c">&#39;id&#39;</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span><span style="color:#6272a4">#fetching latest date and calculate date difference</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>cursor<span style="color:#ff79c6">.</span>execute(<span style="color:#f1fa8c">&#34;SELECT DATE(date) as date FROM asset_price ORDER BY date DESC LIMIT 10;&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>latest_date <span style="color:#ff79c6">=</span> cursor<span style="color:#ff79c6">.</span>fetchone()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>latest_date <span style="color:#ff79c6">=</span> datetime<span style="color:#ff79c6">.</span>strptime(latest_date[<span style="color:#bd93f9">0</span>],<span style="color:#f1fa8c">&#34;%Y-%m-</span><span style="color:#f1fa8c">%d</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>date_diff <span style="color:#ff79c6">=</span> datetime<span style="color:#ff79c6">.</span>today() <span style="color:#ff79c6">-</span> latest_date
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span><span style="color:#6272a4">#connecting to alpaca client</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>client <span style="color:#ff79c6">=</span> StockHistoricalDataClient(config<span style="color:#ff79c6">.</span>api_key, config<span style="color:#ff79c6">.</span>api_secret)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span><span style="color:#6272a4">#fetching price data</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>df <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>DataFrame()
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>batch_size <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">500</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span><span style="color:#ff79c6">for</span> i <span style="color:#ff79c6">in</span> <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#bd93f9">0</span>, <span style="color:#8be9fd;font-style:italic">len</span>(symbols), batch_size):
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>    symbol_batch <span style="color:#ff79c6">=</span> symbols[i:i<span style="color:#ff79c6">+</span>batch_size]
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>    request_params <span style="color:#ff79c6">=</span> StockBarsRequest(
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>                symbol_or_symbols<span style="color:#ff79c6">=</span>symbol_batch,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span>                timeframe<span style="color:#ff79c6">=</span>TimeFrame<span style="color:#ff79c6">.</span>Day,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span>                start<span style="color:#ff79c6">=</span>datetime<span style="color:#ff79c6">.</span>now() <span style="color:#ff79c6">-</span> timedelta(days <span style="color:#ff79c6">=</span> date_diff<span style="color:#ff79c6">.</span>days)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span>                )
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span>    bars <span style="color:#ff79c6">=</span> client<span style="color:#ff79c6">.</span>get_stock_bars(request_params)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span><span>    df <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>concat([df,bars<span style="color:#ff79c6">.</span>df])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#39;Updating </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">/</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c"> stocks price data.&#39;</span><span style="color:#ff79c6">.</span>format(i<span style="color:#ff79c6">+</span>batch_size,<span style="color:#8be9fd;font-style:italic">len</span>(symbols)))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Cleaning up data...&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span><span>df <span style="color:#ff79c6">=</span> asset_data_cleaning(df, <span style="color:#f1fa8c">&#39;assets_database.db&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48</span><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Updating database...&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49</span><span>df<span style="color:#ff79c6">.</span>to_sql(<span style="color:#f1fa8c">&#39;asset_price&#39;</span>, engine, if_exists <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;append&#39;</span>, index <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">False</span> )
+</span></span></code></pre></div><p><strong>Code Explanation:</strong><br>
+The code is pretty much like the populate_price.py explained earlier. From the first line to line 20, the code is exactly the same as previously, basically establishing connection, configuring sql engine and creating symbol list and dictionary.</p>
+<p>On line 23, I execute an SQL statement to get the latest date from my database so I can know when the last date this database was updated and I can get price data from there. Note that I need to change the formatting to python datetime format by using the datetime.strptime function. Once converted, I can perform standard mathematical operation on it. Getting the date difference is simply subtracting datetime.today() to the latest date.</p>
+<p>On line 29 to line 43, the same process is performed, only now I substituted the timedelta arugment &lsquo;days&rsquo; to date_diff.days.</p>
+<p>On line 45, I called the function asset_data_cleaning which I created in a separate file called &lsquo;functions.py&rsquo;. This is basically the standard data cleaning process as explained earlier.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>df<span style="color:#ff79c6">.</span>reset_index(inplace <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">True</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>df[<span style="color:#f1fa8c">&#39;timestamp&#39;</span>] <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>to_datetime(df[<span style="color:#f1fa8c">&#39;timestamp&#39;</span>]<span style="color:#ff79c6">.</span>dt<span style="color:#ff79c6">.</span>strftime(<span style="color:#f1fa8c">&#39;%m-</span><span style="color:#f1fa8c">%d</span><span style="color:#f1fa8c">-%Y&#39;</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>df <span style="color:#ff79c6">=</span> df<span style="color:#ff79c6">.</span>rename(columns<span style="color:#ff79c6">=</span>{<span style="color:#f1fa8c">&#39;symbol&#39;</span>:<span style="color:#f1fa8c">&#39;asset_id&#39;</span>,<span style="color:#f1fa8c">&#39;timestamp&#39;</span>:<span style="color:#f1fa8c">&#39;date&#39;</span>})
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>df <span style="color:#ff79c6">=</span> df<span style="color:#ff79c6">.</span>drop([<span style="color:#f1fa8c">&#39;trade_count&#39;</span>,<span style="color:#f1fa8c">&#39;vwap&#39;</span>],axis<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;columns&#39;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>asset_id_column <span style="color:#ff79c6">=</span> []
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#ff79c6">for</span> asset <span style="color:#ff79c6">in</span> df[<span style="color:#f1fa8c">&#39;asset_id&#39;</span>]:
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    asset_id_column<span style="color:#ff79c6">.</span>append(asset_dict[asset])
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>df[<span style="color:#f1fa8c">&#39;asset_id&#39;</span>] <span style="color:#ff79c6">=</span> asset_id_column
+</span></span></code></pre></div><h1 id="building-webapp-using-fastapi">Building WebApp using FastAPI</h1>
 <ul class="pa0">
   
    <li class="list di">
-     <a href="/portfolio_hisyam/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
+     <a href="../../portfolio_hisyam/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
    </li>
   
    <li class="list di">
-     <a href="/portfolio_hisyam/tags/docker/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">docker</a>
+     <a href="../../portfolio_hisyam/tags/docker/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">docker</a>
    </li>
   
    <li class="list di">
-     <a href="/portfolio_hisyam/tags/trading/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">trading</a>
+     <a href="../../portfolio_hisyam/tags/trading/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">trading</a>
    </li>
   
    <li class="list di">
-     <a href="/portfolio_hisyam/tags/stocks/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">stocks</a>
+     <a href="../../portfolio_hisyam/tags/stocks/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">stocks</a>
    </li>
   
    <li class="list di">
-     <a href="/portfolio_hisyam/tags/database/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">database</a>
+     <a href="../../portfolio_hisyam/tags/database/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">database</a>
    </li>
   
 </ul>
@@ -526,7 +595,7 @@ The structure of this code is similar with populate_assets.py. But here, I query
     <ul class="pa0 list">
 	   
 	     <li  class="mb2">
-          <a href="/portfolio_hisyam/post/project-3/">Trading Series: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</a>
+          <a href="../../portfolio_hisyam/post/project-3/">Trading Series I: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</a>
         </li>
 	    
     </ul>
