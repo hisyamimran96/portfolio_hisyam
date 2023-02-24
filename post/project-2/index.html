@@ -16,12 +16,12 @@
     
 
     
-<link rel="stylesheet" href="../../portfolio_hisyam/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/portfolio_hisyam/ananke/css/main.min.css" >
 
 
 
   
-    <link rel="stylesheet" href="../../portfolio_hisyam/css/custom.css">
+    <link rel="stylesheet" href="/portfolio_hisyam/css/custom.css">
   
 
     
@@ -61,7 +61,7 @@
     <div class="bg-black-60">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="../../portfolio_hisyam/" class="f3 fw2 hover-white no-underline white-90 dib">
+    <a href="/portfolio_hisyam/" class="f3 fw2 hover-white no-underline white-90 dib">
       
         Hisyam Imran
       
@@ -73,31 +73,31 @@
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/about/" title="About me page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/about/" title="About me page">
               About me
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/experience/" title="Experience page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/experience/" title="Experience page">
               Experience
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/post/" title="Projects page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/post/" title="Projects page">
               Projects
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/courses_cert/" title="Certifications page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/courses_cert/" title="Certifications page">
               Certifications
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/contact/" title="Contact page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/contact/" title="Contact page">
               Contact
             </a>
           </li>
@@ -240,7 +240,7 @@ For the web framework, I used FastAPI instead of Flask to test its functionaliti
 </span></span></code></pre></div><h1 id="database-design">Database Design</h1>
 <p>My database is very basic at this point. I have 2 tables: asset and asset_price. The asset will be my main fact table, this is where asset details like stock names, symbols and exchange is stored. The asset_price comprise of each stock historical price, this table will reference the asset ID in asset table. The asset and asset_price table have a one-to-many relationship i.e. one stock can have many price open, high, low and close points (daily price value associated with the same stock). The ER diagram is as shown, this ER diagram was automatically generated using DBeaver tool after I run the SQL statements to create the DB. The dotted line represents one to many relationship with origin from asset table (denoted by the black diamond shape).</p>
 <p style ="text-align:center;">
-<img width = 700px; src="../../images/Database-design.png">
+<img width = 700px; src="/images/Database-design.png">
 </p>
 <p>There are a couple of ways to create this DB. I chose to do this using python. So I created a python script named create_db.py which will establish a connection with my SQLite database and execute the statements. It is easier for me this way, so that in case something&rsquo;s wrong and I need to recreate the DB quickly I can just run this script. The script with SQL statements to create these tables are as below:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>
@@ -293,7 +293,7 @@ For the web framework, I used FastAPI instead of Flask to test its functionaliti
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>assets <span style="color:#ff79c6">=</span> trading_client<span style="color:#ff79c6">.</span>get_all_assets(search_params)
 </span></span></code></pre></div><p>Now, all I need to do is to use the get_all_assets function and input in search parameters as its argument. This function returns a The variable &lsquo;assets&rsquo; store all the information. A quick print of the result gives this.</p>
 <p style ="text-align:center;">
-<img src="../../images/alpaca-request-example.png">
+<img src="/images/alpaca-request-example.png">
 </p>
 <p>Checking the type of data of each elements of this list gives me &lt;class &lsquo;alpaca.trading.models.Asset&rsquo;&gt; which is an object defined by Alpaca, we can understand more by looking at the definitions of each object from the Alpaca-py source code.</p>
 <p>That is how to get the stocks data. Now I can get the data that I needed and insert them into my database. The following code is the full code to populate my asset.db database.</p>
@@ -392,11 +392,11 @@ For the web framework, I used FastAPI instead of Flask to test its functionaliti
 <p>The client will return me the price data based on these parameters.</p>
 <p>In this process, I defined batch_size as the number of stocks to be processed at one time. Alpaca is able to fetch multiple names at one time, it will return a dataframe of prices associated with all the names. I set the batch size to be 500. This is where the symbols list I defined earlier will be utilised, to get each name in my database, I loop through this list of 500 names at a time and stored it into a variable named symbol_batch inside the loop. I then pass this variable as a request parameter to the client. The client will process each 500 names given, this way I can get all the associated price of each of the stock I had in my database. The result will return an object defined by Alpaca which provides the user a dictionary-like data structure, Alpaca made such that the result can be expressed as a Pandas dataframe simply by calling the .df method. For example, a quick print of a symbol name fetched by alpaca will give:</p>
 <p style ="text-align:center;">
-<img width = 700; src="../../images/alpaca-price-data-example.png">
+<img width = 700; src="/images/alpaca-price-data-example.png">
 </p>
 <p>I can access each data simply by calling the symbol of the stock, followed by the &lsquo;method&rsquo;. for example, bars[&lsquo;BBN&rsquo;].high will give me the value of &lsquo;high&rsquo; which is 17.15. This is great, but it is easier to work with a Pandas dataframe. By calling bars.df, a quick print of this will give me a proper dataframe:</p>
 <p style ="text-align:center;">
-<img width = 1000; src="../../images/alpaca-price-data-pandas.png">
+<img width = 1000; src="/images/alpaca-price-data-pandas.png">
 </p>
 <p>This is way easier to process. I can play around with this data using Jupyter notebook to get a very interactive data manipulation environment. Now since I am iterating a few times to get the prices for all the 10000+ stock, I need to merge each newly fetched dataframe to the previous dataframe, to do this I use the Pandas concat method. And that concludes the data extraction process.</p>
 <h1 id="data-cleaningtransformation">Data cleaning/transformation</h1>
@@ -412,20 +412,20 @@ For the web framework, I used FastAPI instead of Flask to test its functionaliti
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>df[<span style="color:#f1fa8c">&#39;asset_id&#39;</span>] <span style="color:#ff79c6">=</span> asset_id_column
 </span></span></code></pre></div><p><strong>Code Explanation:</strong></p>
 <p style ="text-align:center;">
-<img width = 1000; src="../../images/jupyter-2.png">
+<img width = 1000; src="/images/jupyter-2.png">
 </p>
 <p>From the snippet of the data, it can be seen that the index is of the multiindex format, meaning we have a 2 &lsquo;columns&rsquo; of indexes, in which the timestamp is aggregated and grouped by symbol. This is not ideal for me as I want to insert into my database as defined during my database creation. Basically I want to &lsquo;unstack&rsquo; the symbol and let each row having the value for symbol. To do that I just have to reset the index. df.reset_index() do just that, this method essentially change the indexes into columns, and default a numerical index. This way I have the format that I want, shown below.</p>
 <p style ="text-align:center;">
-<img width = 1000; src="../../images/jupyter-1.png">
+<img width = 1000; src="/images/jupyter-1.png">
 </p>
 <p>The inplace = True basically means that I want the changes to be applied to the original dataframe.</p>
 <p>Next, I want to rename the &lsquo;symbol&rsquo; column to &rsquo;ticker&rsquo; and the &rsquo;timestamp&rsquo; to &lsquo;date&rsquo; and I will drop the &rsquo;trade-count&rsquo; and &lsquo;vwap&rsquo; to make the columns the same as my database. This is important as I will use SQLAlchemy engine later to transfer this dataframe directly into my database, the columns naming need to be the same in order for it to work.</p>
 <p style ="text-align:center;">
-<img width = 1000; src="../../images/jupyter-3.png">
+<img width = 1000; src="/images/jupyter-3.png">
 </p>
 <p>As you may noticed, the asset_id is not as what I expected, I need to change it to the IDs that I defined in my &lsquo;asset&rsquo; table earlier. This is where my stocks_dict that I created earlier is used.</p>
 <p style ="text-align:center;">
-<img width = 1000; src="../../images/jupyter-4.png">
+<img width = 1000; src="/images/jupyter-4.png">
 </p>
 <p>As shown above, I created a list called asset_id_column. Now I loop through the column asset_id and replace each symbol with the associated value (ID) using the dictionary. This works because the symbol is the same as the key in my dictionary, by calling the key for each symbol, dictionary will return the value, which is the stock id. Now the table is good, we have the asset_id in &lsquo;asset_price&rsquo; table equals the id in &lsquo;asset&rsquo; table.</p>
 <h1 id="data-loading">Data Loading</h1>
@@ -489,7 +489,7 @@ I created a new python file named update_db.py. The full code is as follows:</p>
 The structure of this code is similar with populate_assets.py. But here, I query my database and get a list of current stocks in the database then compare the symbols with the ones that I fetch from Alpaca. If the ones fetched are not in the current database, I insert them into my database.</p>
 <p>Since I want this script to run everyday, I also want a logging feature. I can do this by using the open() function to open a text file called log.txt, each time this script runs I will write a log to indicate that the script runs successfully. The result is shown below in a screenshot showing that the database is updated everyday at 15PM UTC+8.</p>
 <p style ="text-align:center;">
-<img width = 1000; src="../../images/logging.png">
+<img width = 1000; src="/images/logging.png">
 </p>
 <p><strong>Price data updates</strong><br>
 Similarly, another python script is created for updating price data. Additionally, I created another separate python file called &lsquo;functions.py&rsquo;. This file is to store the common function that I will be using, for example data cleaning. Since the same process of data cleaning will be repeated here, I figured it is more &lsquo;clean&rsquo; to dump all the codes into a function that I can call to perform these steps.</p>
@@ -559,23 +559,23 @@ The code is pretty much like the populate_price.py explained earlier. From the f
 <ul class="pa0">
   
    <li class="list di">
-     <a href="../../portfolio_hisyam/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
+     <a href="/portfolio_hisyam/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
    </li>
   
    <li class="list di">
-     <a href="../../portfolio_hisyam/tags/docker/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">docker</a>
+     <a href="/portfolio_hisyam/tags/docker/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">docker</a>
    </li>
   
    <li class="list di">
-     <a href="../../portfolio_hisyam/tags/trading/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">trading</a>
+     <a href="/portfolio_hisyam/tags/trading/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">trading</a>
    </li>
   
    <li class="list di">
-     <a href="../../portfolio_hisyam/tags/stocks/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">stocks</a>
+     <a href="/portfolio_hisyam/tags/stocks/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">stocks</a>
    </li>
   
    <li class="list di">
-     <a href="../../portfolio_hisyam/tags/database/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">database</a>
+     <a href="/portfolio_hisyam/tags/database/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">database</a>
    </li>
   
 </ul>
@@ -595,7 +595,7 @@ The code is pretty much like the populate_price.py explained earlier. From the f
     <ul class="pa0 list">
 	   
 	     <li  class="mb2">
-          <a href="../../portfolio_hisyam/post/project-3/">Trading Series I: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</a>
+          <a href="/portfolio_hisyam/post/project-3/">Trading Series I: S&amp;P500 Candlestick Pattern Screener WebApp using TA-lib, Yahoo Finance API and Flask</a>
         </li>
 	    
     </ul>

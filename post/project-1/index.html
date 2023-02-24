@@ -18,12 +18,12 @@ Data Extraction - To make this simple, I decided to scrape only 200 latest tweet
     
 
     
-<link rel="stylesheet" href="../../portfolio_hisyam/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/portfolio_hisyam/ananke/css/main.min.css" >
 
 
 
   
-    <link rel="stylesheet" href="../../portfolio_hisyam/css/custom.css">
+    <link rel="stylesheet" href="/portfolio_hisyam/css/custom.css">
   
 
     
@@ -69,7 +69,7 @@ Data Extraction - To make this simple, I decided to scrape only 200 latest tweet
     <div class="bg-black-60">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="../../portfolio_hisyam/" class="f3 fw2 hover-white no-underline white-90 dib">
+    <a href="/portfolio_hisyam/" class="f3 fw2 hover-white no-underline white-90 dib">
       
         Hisyam Imran
       
@@ -81,31 +81,31 @@ Data Extraction - To make this simple, I decided to scrape only 200 latest tweet
         <ul class="pl0 mr3">
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/about/" title="About me page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/about/" title="About me page">
               About me
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/experience/" title="Experience page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/experience/" title="Experience page">
               Experience
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/post/" title="Projects page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/post/" title="Projects page">
               Projects
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/courses_cert/" title="Certifications page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/courses_cert/" title="Certifications page">
               Certifications
             </a>
           </li>
           
           <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="../../portfolio_hisyam/contact/" title="Contact page">
+            <a class="hover-white no-underline white-90" href="/portfolio_hisyam/contact/" title="Contact page">
               Contact
             </a>
           </li>
@@ -205,7 +205,7 @@ Data Extraction - To make this simple, I decided to scrape only 200 latest tweet
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="overview">Overview</h1>
 <p>In this Project, I built a data pipeline to scrape through tweets using tweepy, do basic data cleaning and load it onto AWS EC2 cloud instance. The data are stored in S3 bucket and orchestrated automatically using Apache Airflow.</p>
-<p><figure><img src="../../images/twitter_etl.png"/>
+<p><figure><img src="/images/twitter_etl.png"/>
 </figure>
 
 <p style ="text-align:center;">
@@ -254,7 +254,7 @@ Figure 1: Overview of ETL data pipeline
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>tweets <span style="color:#ff79c6">=</span> api<span style="color:#ff79c6">.</span>user_timeline(screen_name<span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#39;@elonmusk&#39;</span>, count<span style="color:#ff79c6">=</span><span style="color:#bd93f9">200</span>, include_rts <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">False</span>, tweet_mode <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;extended&#39;</span>)
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#6272a4"># tweet_mode is set to extended to get full text, otherwise we will only get max 140 words.</span>
 </span></span></code></pre></div><p>By default, twitter will pass data to us in JSON format. It&rsquo;s up to us to interpret this data. As per image below, a quick print of the above results gave us this alien language. This data needs to be cleaned later into a more convenient format.</p>
-<figure><img src="../../images/terminal_output_twitter.png"/>
+<figure><img src="/images/terminal_output_twitter.png"/>
 </figure>
 
 <hr>
@@ -276,7 +276,7 @@ Figure 1: Overview of ETL data pipeline
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>        df <span style="color:#ff79c6">=</span> pd<span style="color:#ff79c6">.</span>DataFrame(tweet_list)
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>        df<span style="color:#ff79c6">.</span>to_csv(<span style="color:#f1fa8c">&#39;refined_tweets.csv&#39;</span>)
 </span></span></code></pre></div><p>And that concludes my simple transformation. The result of transformed data is as per below. Now we need to upload this file to the cloud, and schedule tasks to do the same thing each day or any time interval that we want, we will use Airflow for that.</p>
-<p><img src="../../images/twitter_csv.png" alt="img"></p>
+<p><img src="/images/twitter_csv.png" alt="img"></p>
 <hr>
 <h1 id="connecting-to-ec2-machine">Connecting to EC2 Machine</h1>
 <p>For setting up EC2 instance, read <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-methods.html#:~:text=Connect%20using%20the%20Amazon%20EC2%20%20%20,%20%20%20%20%20%20%20window.">here</a>. Once an EC2 instance is created, AWS will generate a key. To connect to EC2 instance, click &lsquo;connect&rsquo; on the EC2 instance and copy the command to initiate EC2 machine and paste it to terminal.</p>
@@ -292,7 +292,7 @@ Figure 1: Overview of ETL data pipeline
 <h1 id="data-orchestration">Data Orchestration</h1>
 <p>The default port used for Airflow is the 8080 port. Once the Airflow is running, we can access Airflow by copying my EC2 public DNS and pasting it to browser and adding &lsquo;/8080&rsquo; to the path. The Python file (run_etl.py) created for data extraction and transformation needs to be copied and uploaded to Airflow directory in EC2 machine. And I need to create a new folder to store these scripts, I created twitterDAG folder and put the python file here. To make sure airflow is running correctly, we need to specify to airflow as to where to find these files. To do this, I used nano bash editor and access airflow.config file and change dag_folder directory name to my desired folder name, in this case twitterDAG. This will make Airflow use this directory when running.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>sudo nano airflow.config
-</span></span></code></pre></div><p><img src="../../images/nano_text_editor.png" alt="img"></p>
+</span></span></code></pre></div><p><img src="/images/nano_text_editor.png" alt="img"></p>
 <p>If everything is okay, we should be able to see twitterDAG name in the list of dags in Airflow.</p>
 <h4 id="creating-dag-file">Creating DAG file</h4>
 <p>DAG file is basically the orchestration file to instruct Airflow on how the program should be run. Read <a href="https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html">here</a> for more information about DAGs.
@@ -338,13 +338,13 @@ Figure 1: Overview of ETL data pipeline
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>dag_run_etl
 </span></span></code></pre></div><p>The PythonOperator is used to execute Python callables. I scheduled the <code>schedule_interval</code> to be 1 day, meaning that the DAG will run everyday at the same time as I run the previous day. the task <code>dag_run_etl</code> will run the python file named <code>run_etl</code> which is the file for data extraction and data transformation. This DAG file needs to be copied and paste into airflow directory in EC2 machine too.</p>
 <p>If everything is good, our DAG should be able to run. The DAG will have a green border if it&rsquo;s successfully deployed.</p>
-<p><img src="../../images/DAG_created_successfully.png" alt="DAG"></p>
+<p><img src="/images/DAG_created_successfully.png" alt="DAG"></p>
 <hr>
 <h1 id="data-loading">Data Loading</h1>
 <p>I load the data to an S3 bucket. To do this, create a new bucket and copy the name of the bucket. Paste the name preceded with s3:// into the destination file when we created csv file earlier:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>df<span style="color:#ff79c6">.</span>to_csv(<span style="color:#f1fa8c">&#39;s3://</span><span style="color:#f1fa8c">{bucket_name}</span><span style="color:#f1fa8c">/refined_tweets.csv&#39;</span>)
 </span></span></code></pre></div><p>And we&rsquo;re done!</p>
-<p><img src="../../images/ETL_success.png" alt="img"></p>
+<p><img src="/images/ETL_success.png" alt="img"></p>
 <p>The pipeline is successfully deployed in a CLoud Environment.</p>
 <hr>
 <h1 id="further-development-ideas">Further Development Ideas</h1>
